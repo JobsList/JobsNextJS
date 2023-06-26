@@ -37,6 +37,7 @@ function Bootstrap({
 					name="viewport"
 					content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
 				/>
+				<meta charSet="utf-8" />
 			</Head>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
