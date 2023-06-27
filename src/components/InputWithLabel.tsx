@@ -1,4 +1,5 @@
 import { Box, TextField } from "@mui/material";
+import type { TextFieldProps } from "@mui/material/TextField";
 import React from "react";
 import InputLabel from "./InputLabel";
 
@@ -9,6 +10,9 @@ type InputWithLabelProps = {
 	onChange?: (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	) => void;
+	mt?: number;
+	mb?: number;
+	textProps?: TextFieldProps;
 };
 
 const InputWithLabel: React.FC<InputWithLabelProps> = ({
@@ -16,11 +20,15 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
 	helperText = "",
 	value,
 	onChange = (e) => {},
+	mt,
+	mb,
+	textProps,
 }) => {
 	return (
-		<Box component="div">
+		<Box component="div" mt={mt} mb={mb}>
 			<InputLabel>{label}</InputLabel>
 			<TextField
+				{...textProps}
 				value={value}
 				size="small"
 				placeholder={label}

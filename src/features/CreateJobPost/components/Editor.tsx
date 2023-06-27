@@ -5,13 +5,16 @@ import React from "react";
 
 type EditorProps = {
 	label: string;
+	height?: string;
 };
 
-const Editor: React.FC<EditorProps> = ({ label }) => {
+const Editor: React.FC<EditorProps> = ({ label, height }) => {
 	return (
 		<Box component="div">
-			<InputLabel>{label}</InputLabel>
-			<Wysiwyg />
+			<InputLabel sx={{ marginBottom: (theme) => theme.spacing(10) }}>
+				{label}
+			</InputLabel>
+			<Wysiwyg editorHeight={height} />
 		</Box>
 	);
 };

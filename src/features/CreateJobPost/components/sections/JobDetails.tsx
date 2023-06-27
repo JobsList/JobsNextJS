@@ -10,6 +10,9 @@ import theme from "@/theme";
 import CardWithTitle from "@/components/CardWithTitle";
 import UploadFile from "@/components/UploadFile";
 import Editor from "../Editor";
+import Benefits from "../Benefits";
+import HowToApply from "../HowToApply";
+import InputWithLabel from "@/components/InputWithLabel";
 
 const JobDetails = () => {
 	return (
@@ -62,6 +65,26 @@ const JobDetails = () => {
 			<LegalSalaryNote />
 
 			<Editor label="Job Description" />
+
+			<Benefits />
+
+			<HowToApply />
+
+			<InputWithLabel
+				label="Apply URL *"
+				helperText={`Apply URLs with a form an applicant can fill out generally receive a lot more applicants than having people apply by email (below). A good platform to have applicants apply on is Lever (not affiliated). `}
+				mt={10}
+				mb={10}
+			/>
+
+			<Divider>Or</Divider>
+
+			<InputWithLabel
+				label="Apply email address *"
+				helperText={`This email is public (!), the [ Apply ] button links to it if you do not specify an Apply URL above. `}
+				mt={10}
+				mb={10}
+			/>
 		</CardWithTitle>
 	);
 };

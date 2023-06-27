@@ -1,5 +1,5 @@
+import InputWithLabel from "@/components/InputWithLabel";
 import React from "react";
-import InputWithLabel from "../../../components/InputWithLabel";
 
 const CompanyName = () => {
 	return (
