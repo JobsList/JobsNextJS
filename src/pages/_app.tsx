@@ -1,4 +1,5 @@
 import { LayoutComponent } from "@/layouts";
+import store from "@/lib/redux";
 import theme from "@/theme";
 import createEmotionCache from "@/theme/createEmotionCache";
 import type { EmotionCache } from "@emotion/cache";
@@ -9,6 +10,7 @@ import type { NextComponentType } from "next";
 import type { AppContext, AppProps } from "next/app";
 import App from "next/app";
 import Head from "next/head";
+import { Provider } from "react-redux";
 
 const emotionClientCache = createEmotionCache();
 
@@ -30,22 +32,24 @@ function Bootstrap({
 		Component.layout || (({ children }) => <>{children}</>);
 
 	return (
-		<CacheProvider value={emotionCache}>
-			<Head>
-				<title>Job Search</title>
-				<meta
-					name="viewport"
-					content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-				/>
-				<meta charSet="utf-8" />
-			</Head>
-			<ThemeProvider theme={theme}>
-				<CssBaseline />
-				<Layout>
-					<Component {...pageProps} />
-				</Layout>
-			</ThemeProvider>
-		</CacheProvider>
+		<Provider store={store}>
+			<CacheProvider value={emotionCache}>
+				<Head>
+					<title>Job Search</title>
+					<meta
+						name="viewport"
+						content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+					/>
+					<meta charSet="utf-8" />
+				</Head>
+				<ThemeProvider theme={theme}>
+					<CssBaseline />
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+				</ThemeProvider>
+			</CacheProvider>
+		</Provider>
 	);
 }
 

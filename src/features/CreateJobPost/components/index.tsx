@@ -2,7 +2,7 @@ import React from "react";
 import StartSection from "./sections/StartSection";
 import PostDesignSection from "./sections/PostDesignSection";
 import { Stack } from "@mui/material";
-import JobDetails from "./sections/JobDetails";
+import JobDetails from "./JobDetails";
 import CompanySection from "./sections/CompanySection";
 import FeedbackSection from "./sections/FeedbackSection";
 import PreviewSection from "./sections/PreviewSection";

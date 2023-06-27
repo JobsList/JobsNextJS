@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { EditorState } from "draft-js";
 import { Editor as DraftEditor } from "react-draft-wysiwyg";
 import type { EditorProps as DraftEditorProps } from "react-draft-wysiwyg";
@@ -15,9 +15,20 @@ const Editor: React.FC<EditorProps> = (props) => {
 		EditorState.createEmpty()
 	);
 
+	const onPayloadUpdate = useCallback(() => {
+		if (props.editorState) {
+			setEditorState(props.editorState);
+		}
+	}, [props.editorState]);
+
 	const onChange = (editor: EditorState) => {
 		setEditorState(editor);
+		props?.onEditorStateChange?.(editor);
 	};
+
+	useEffect(() => {
+		onPayloadUpdate();
+	}, [onPayloadUpdate]);
 
 	return (
 		<DraftEditor
