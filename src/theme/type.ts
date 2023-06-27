@@ -1,6 +1,15 @@
 type ExtraColorPalette = {
 	black: string;
+	blackLight: string;
 	white: string;
+	grey: string;
+	greyLight: string;
+	greyLightest: string;
+	backgroundColor: string;
+	blackLightest: string;
+	green: string;
+	greybtn: string;
+	greenTag: string;
 	// add more extra colors here
 };
 
