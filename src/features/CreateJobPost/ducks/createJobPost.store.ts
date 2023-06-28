@@ -1,5 +1,4 @@
 import { EditorState } from "draft-js";
-import { POSITION_TYPE } from "../components/PositionType/PositionTypeData";
 
 export type STICKY_POST_TYPE = "hours" | "week" | "month";
 
@@ -15,23 +14,36 @@ export type HIGHLIGHT = {
 
 export type POST_STICKY = {
 	active: boolean;
-	type: STICKY_POST_TYPE;
+	type?: STICKY_POST_TYPE;
+};
+
+export type BOOST_TYPE = {
+	active: boolean;
+	boost: number;
 };
 
 export type POST_DESIGN_TYPE = {
-	premium?: boolean;
-	show_logo?: boolean;
-	email_blast?: boolean;
+	premium: boolean;
+	show_logo: BOOST_TYPE;
+	email_blast: BOOST_TYPE;
 	auto_matched?: boolean;
-	qr_code?: boolean;
-	highlight?: HIGHLIGHT;
-	sticky?: POST_STICKY;
-	geolock?: boolean;
+	qr_code: boolean;
+	highlight: HIGHLIGHT & {
+		boost: number;
+	};
+	sticky: POST_STICKY & {
+		hoursBoost: number;
+		weekBoost: number;
+		monthBoost: number;
+	};
+	geolock: boolean;
 };
 
 export type JOB_DETAIL_TYPE = {
 	company_logo: string;
-	highlight?: HIGHLIGHT;
+	highlight?: HIGHLIGHT & {
+		boost: number;
+	};
 	salary: SALARY;
 	job_desc: EditorState;
 	benefits: Array<string>;
@@ -53,16 +65,22 @@ export type FEEDBACK_TYPE = {
 	feedback?: string;
 };
 
+export type EXPECTED_RESULT = {
+	views: number;
+	clicks: number;
+};
+
 export type CREATE_JOB_POST_PAYLOAD = {
 	company_name: string;
 	position: string;
-	positionType: POSITION_TYPE;
+	positionType: string;
 	tags: Array<string>;
 	location: Array<string>;
 	post_design: POST_DESIGN_TYPE;
 	job_details: JOB_DETAIL_TYPE;
 	company_detail: COMPANY_DETAILS_TYPE;
 	feedback?: FEEDBACK_TYPE;
+	expected_result: EXPECTED_RESULT;
 };
 
 export type CREATE_JOB_POST_INITIAL_STATE = {
@@ -77,25 +95,42 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 	payload: {
 		company_name: "",
 		position: "",
-		positionType: {
-			value: "",
-			title: "",
-		},
+		positionType: "full-time",
 		tags: [],
 		location: [],
 		post_design: {
-			premium: undefined,
-			show_logo: undefined,
-			email_blast: undefined,
-			auto_matched: undefined,
-			qr_code: undefined,
-			highlight: undefined,
-			sticky: undefined,
-			geolock: undefined,
+			premium: false,
+			show_logo: {
+				active: false,
+				boost: 2,
+			},
+			email_blast: {
+				active: false,
+				boost: 3,
+			},
+			auto_matched: false,
+			qr_code: false,
+			highlight: {
+				active: false,
+				color: "yellow",
+				boost: 2,
+			},
+			sticky: {
+				active: false,
+				type: undefined,
+				hoursBoost: 2,
+				weekBoost: 6,
+				monthBoost: 9,
+			},
+			geolock: false,
 		},
 		job_details: {
 			company_logo: "",
-			highlight: undefined,
+			highlight: {
+				active: false,
+				color: "",
+				boost: 3,
+			},
 			salary: {
 				min: 0,
 				max: 0,
@@ -103,16 +138,20 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 			job_desc: EditorState.createEmpty(),
 			benefits: [],
 			howToApply: EditorState.createEmpty(),
-			apply_with_url: undefined,
-			apply_with_email: undefined,
+			apply_with_url: "",
+			apply_with_email: "",
 		},
 		company_detail: {
-			twitter_name: undefined,
+			twitter_name: "",
 			company_email: "",
-			invoice_email: undefined,
+			invoice_email: "",
 			invoice_address: "",
-			invoice_note_po_number: undefined,
-			pay_later: undefined,
+			invoice_note_po_number: "",
+			pay_later: false,
+		},
+		expected_result: {
+			views: 142,
+			clicks: 16,
 		},
 	},
 };

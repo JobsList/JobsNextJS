@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid as MUIGrid, TextField, Typography, styled } from "@mui/material";
+import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
 
 const Grid = styled(MUIGrid)(({ theme }) => ({
 	[theme.breakpoints.down("md")]: {
@@ -7,7 +8,12 @@ const Grid = styled(MUIGrid)(({ theme }) => ({
 	},
 }));
 
-const ExpectedViewsAndClicks = () => {
+const ExpectedViewsAndClicks: React.FC = () => {
+	const dispatch = useAppDispatch();
+	const { payload } = useAppSelect((state) => state.create_job);
+
+	const { expected_result } = payload;
+
 	return (
 		<MUIGrid mt={9} ml={9} container>
 			<MUIGrid
@@ -28,6 +34,7 @@ const ExpectedViewsAndClicks = () => {
 							readOnly: true,
 						}}
 						size="small"
+						value={expected_result.views}
 					/>
 				</MUIGrid>
 			</MUIGrid>
@@ -50,6 +57,7 @@ const ExpectedViewsAndClicks = () => {
 							readOnly: true,
 						}}
 						size="small"
+						value={expected_result.clicks}
 					/>
 				</MUIGrid>
 			</Grid>

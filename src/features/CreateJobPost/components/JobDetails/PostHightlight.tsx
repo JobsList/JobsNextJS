@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Stack, Typography } from "@mui/material";
 import React from "react";
-import CheckboxWithBoost from "../CheckboxWithBoost";
 import ColorPicker from "@/components/ColorPicker";
-import BoostTag from "../BoostTag";
+import CheckboxWithBoost from "@/components/CheckboxWithBoost";
+import BoostTag from "@/components/BoostTag";
 
 const PostHightlight: React.FC = () => {
 	return (

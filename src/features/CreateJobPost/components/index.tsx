@@ -1,6 +1,6 @@
 import React from "react";
-import StartSection from "./sections/StartSection";
-import PostDesignSection from "./sections/PostDesignSection";
+import BasicInfo from "./BasicInfo";
+import PostDesign from "./PostDesign";
 import { Stack } from "@mui/material";
 import JobDetails from "./JobDetails";
 import CompanySection from "./sections/CompanySection";
@@ -10,8 +10,8 @@ import PreviewSection from "./sections/PreviewSection";
 const CreatePostForm = () => {
 	return (
 		<Stack spacing={25}>
-			<StartSection />
-			<PostDesignSection />
+			<BasicInfo />
+			<PostDesign />
 			<JobDetails />
 			<CompanySection />
 			<FeedbackSection />

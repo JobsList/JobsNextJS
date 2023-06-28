@@ -3,8 +3,8 @@ import CardWithTitle from "@/components/CardWithTitle";
 import InputWithLabel from "@/components/InputWithLabel";
 import Subtitle2 from "@/components/Subtitle2";
 import React from "react";
-import CheckboxWithBoost from "../CheckboxWithBoost";
 import { Typography } from "@mui/material";
+import CheckboxWithBoost from "@/components/CheckboxWithBoost";
 
 const CompanySection = () => {
 	return (

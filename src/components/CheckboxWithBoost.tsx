@@ -17,15 +17,32 @@ const Label = styled("label")(({ theme }) => ({
 	},
 }));
 
-const CheckboxWithBoost = ({ labelText = <></>, boostText = "" }) => {
+type CheckboxWithBoostProps = {
+	onChange?: (checked: boolean) => void;
+	checked?: boolean;
+	labelText?: React.ReactNode;
+	boost?: number;
+};
+
+const CheckboxWithBoost: React.FC<CheckboxWithBoostProps> = ({
+	labelText = <></>,
+	boost,
+	onChange,
+	checked,
+}) => {
 	const id = Math.random() * 10000;
 	return (
 		<MUIStack direction="row" alignItems="center">
-			<Checkbox size="medium" id={`checkbox ${id}`} />
+			<Checkbox
+				checked={checked}
+				onChange={(_, checked) => onChange?.(checked)}
+				size="medium"
+				id={`checkbox ${id}`}
+			/>
 			<Label htmlFor={`checkbox ${id}`}>
 				<Stack direction="row" alignItems="center">
 					{labelText}
-					{boostText && <BoostTag boostText={boostText} />}
+					{boost && <BoostTag boostText={`${boost}x more views`} />}
 				</Stack>
 			</Label>
 		</MUIStack>

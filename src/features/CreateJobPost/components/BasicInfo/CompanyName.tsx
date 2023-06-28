@@ -1,7 +1,7 @@
 import InputWithLabel from "@/components/InputWithLabel";
 import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
 import React from "react";
-import { setJobPostPayload } from "../ducks/createJobPost.reducer";
+import { setJobPostPayload } from "../../ducks/createJobPost.reducer";
 
 const CompanyName = () => {
 	const { payload } = useAppSelect((state) => state.create_job);
