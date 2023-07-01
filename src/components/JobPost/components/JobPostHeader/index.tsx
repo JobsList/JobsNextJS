@@ -4,8 +4,20 @@ import JobPostHeaderCompanyLogo from "./JobPostHeaderCompanyLogo";
 import JobPostHeaderTitle from "./JobPostHeaderTitle";
 import JobPostHeaderFilters from "./JobPostHeaderFilters";
 import JobPostHeaderApply from "./JobPostHeaderApply";
+import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 
-const JobPostHeader = ({ onClick = () => {}, showDetails = false }) => {
+type JobPostHeaderProps = {
+	onClick?: () => void;
+	showDetails?: boolean;
+	post: JOB_POST_PAYLOAD;
+};
+
+const JobPostHeader: React.FC<JobPostHeaderProps> = ({
+	onClick = () => {},
+	showDetails = false,
+	post,
+}) => {
+	console.log("POST => ", post);
 	return (
 		<Grid
 			component="div"
@@ -33,7 +45,10 @@ const JobPostHeader = ({ onClick = () => {}, showDetails = false }) => {
 		>
 			<JobPostHeaderCompanyLogo />
 			<Grid item md={6}>
-				<JobPostHeaderTitle />
+				<JobPostHeaderTitle
+					title={post.company_name}
+					position={post.position}
+				/>
 			</Grid>
 			<Grid
 				item

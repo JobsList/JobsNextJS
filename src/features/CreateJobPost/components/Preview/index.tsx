@@ -1,10 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 import CardWithTitle from "@/components/CardWithTitle";
+import JobPost from "@/components/JobPost";
 import Subtitle1 from "@/components/Subtitle1";
+import { useAppSelect } from "@/hooks/useRedux";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-const PreviewSection: React.FC = () => {
+const Preview: React.FC = () => {
+	const { payload } = useAppSelect((state) => state.create_job);
+
 	return (
 		<CardWithTitle title="Preview">
 			<Subtitle1 textAlign="center">
@@ -23,9 +27,11 @@ const PreviewSection: React.FC = () => {
 					borderRadius: (theme) => theme.shape.borderRadius / 6,
 					backgroundColor: "extra.white",
 				}}
-			></Box>
+			>
+				<JobPost expandable={false} expanded borderd={false} post={payload} />
+			</Box>
 		</CardWithTitle>
 	);
 };
 
-export default PreviewSection;
+export default Preview;

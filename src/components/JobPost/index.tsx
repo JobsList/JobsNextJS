@@ -3,19 +3,32 @@ import React, { useState } from "react";
 import JobPostHeader from "./components/JobPostHeader";
 import JobPostDetails from "./components/JobPostDetails";
 import HowToApply from "../HowToApply";
+import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 
 type JobPostProps = {
 	expandable?: boolean;
+	expanded?: boolean;
+	borderd?: boolean;
+	post: JOB_POST_PAYLOAD;
 };
 
-const JobPost: React.FC<JobPostProps> = ({ expandable = true }) => {
-	const [showDetails, setDetailsState] = useState(() => false);
+const JobPost: React.FC<JobPostProps> = ({
+	expandable = true,
+	expanded,
+	borderd = true,
+	post,
+}) => {
+	const [showDetails, setDetailsState] = useState(() => expanded || false);
+	const wrapperStyle: any = {};
+	if (borderd) {
+		wrapperStyle.border = `1px solid`;
+		wrapperStyle.borderColor = "extra.grey";
+	}
+
 	return (
 		<Box
 			sx={{
-				borderWidth: 1,
-				borderStyle: "solid",
-				borderColor: "extra.grey",
+				...wrapperStyle,
 				borderRadius: "10px",
 				backgroundColor: "extra.white",
 				padding: (theme) => theme.spacing(5),
@@ -28,6 +41,7 @@ const JobPost: React.FC<JobPostProps> = ({ expandable = true }) => {
 					setDetailsState(!showDetails);
 				}}
 				showDetails={showDetails}
+				post={post}
 			/>
 
 			{showDetails && (

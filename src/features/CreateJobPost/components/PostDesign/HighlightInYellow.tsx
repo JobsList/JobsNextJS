@@ -17,7 +17,7 @@ const HighlightInYellow: React.FC = () => {
 			boost={post_design.highlight.boost}
 			onChange={(checked) => {
 				const result = calculateExpectedClickAndViews(
-					post_design.highlight.boost,
+					2,
 					expected_result,
 					checked ? "MULTIPLY" : "DIVIDE"
 				);

@@ -9,7 +9,7 @@ export type OptionObjectType = {
 
 type SalarySelectionProps = {
 	value?: any; // WE will change it to a proper value type
-	onSelect?: (e: React.ChangeEvent<any>) => void;
+	onSelect?: (value: any) => void;
 	options?: Array<any>;
 };
 
@@ -38,7 +38,7 @@ const SalarySelection: React.FC<SalarySelectionProps> = ({
 		<Select
 			fullWidth
 			size="small"
-			value={value}
+			value={value || getOptionValue(options[0])}
 			defaultValue={getOptionValue(options[0])}
 			onChange={(e) => onSelect(e.target.value)}
 			IconComponent={undefined}

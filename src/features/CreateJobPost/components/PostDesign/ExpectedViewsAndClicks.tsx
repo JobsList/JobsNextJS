@@ -34,7 +34,7 @@ const ExpectedViewsAndClicks: React.FC = () => {
 							readOnly: true,
 						}}
 						size="small"
-						value={expected_result.views}
+						value={Math.round(expected_result.views).toLocaleString("en-US")}
 					/>
 				</MUIGrid>
 			</MUIGrid>
@@ -57,7 +57,7 @@ const ExpectedViewsAndClicks: React.FC = () => {
 							readOnly: true,
 						}}
 						size="small"
-						value={expected_result.clicks}
+						value={Math.round(expected_result.clicks).toLocaleString("en-US")}
 					/>
 				</MUIGrid>
 			</Grid>

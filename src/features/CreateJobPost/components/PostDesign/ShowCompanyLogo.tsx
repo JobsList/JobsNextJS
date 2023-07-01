@@ -20,7 +20,7 @@ const ShowCompanyLogo: React.FC = () => {
 			boost={show_logo.boost}
 			onChange={(checked) => {
 				const result = calculateExpectedClickAndViews(
-					show_logo.boost,
+					2,
 					expected_result,
 					checked ? "MULTIPLY" : "DIVIDE"
 				);

@@ -57,8 +57,8 @@ const RadioButtonWithCheckbox: React.FC<CheckboxWithBoostProps> = ({
 				onChange={(_, checked) => onChange?.(checked)}
 				size="medium"
 				id={`checkbox ${id}`}
-				checkedIcon={<CheckBoxOutlineBlankIcon />}
-				icon={<CheckBoxIcon />}
+				checkedIcon={<CheckBoxIcon />}
+				icon={<CheckBoxOutlineBlankIcon />}
 			/>
 			<Label htmlFor={`checkbox ${id}`}>
 				<Stack direction="row" alignItems="center">

@@ -22,7 +22,7 @@ const EmailBlast: React.FC = () => {
 			boost={email_blast.boost}
 			onChange={(checked) => {
 				const result = calculateExpectedClickAndViews(
-					email_blast.boost,
+					2,
 					expected_result,
 					checked ? "MULTIPLY" : "DIVIDE"
 				);

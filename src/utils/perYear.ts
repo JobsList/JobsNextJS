@@ -5,11 +5,13 @@ type RANGE = {
 
 const MULTIPLIER = 10000;
 
-const getPerYear = ({ min = 1, max = 75 }: RANGE): Array<number> => {
-	const range = [];
+const getPerYear = ({ min = 1, max = 75 }: RANGE): Array<string> => {
+	const range: string[] = [];
 	for (let i = min; i <= max; i++) {
-		range.push(i * MULTIPLIER);
+		range.push((i * MULTIPLIER).toLocaleString("en-US"));
 	}
 
 	return range;
 };
+
+export default getPerYear;

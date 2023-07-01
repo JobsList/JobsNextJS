@@ -1,4 +1,9 @@
+import {
+	DEFAULT_CLICKS,
+	DEFAULT_VIEWS,
+} from "@/utils/calculateExpectedClickAndViews";
 import { EditorState } from "draft-js";
+import { BenefitType } from "../components/JobDetails/Benefits/Benefit";
 
 export type STICKY_POST_TYPE = "hours" | "week" | "month";
 
@@ -40,13 +45,13 @@ export type POST_DESIGN_TYPE = {
 };
 
 export type JOB_DETAIL_TYPE = {
-	company_logo: string;
-	highlight?: HIGHLIGHT & {
+	company_logo?: string;
+	highlight: HIGHLIGHT & {
 		boost: number;
 	};
 	salary: SALARY;
 	job_desc: EditorState;
-	benefits: Array<string>;
+	benefits: Array<BenefitType>;
 	howToApply?: EditorState;
 	apply_with_url?: string;
 	apply_with_email?: string;
@@ -70,7 +75,8 @@ export type EXPECTED_RESULT = {
 	clicks: number;
 };
 
-export type CREATE_JOB_POST_PAYLOAD = {
+export type JOB_POST_PAYLOAD = {
+	id?: string;
 	company_name: string;
 	position: string;
 	positionType: string;
@@ -86,7 +92,7 @@ export type CREATE_JOB_POST_PAYLOAD = {
 export type CREATE_JOB_POST_INITIAL_STATE = {
 	loading: boolean;
 	error: string;
-	payload: CREATE_JOB_POST_PAYLOAD;
+	payload: JOB_POST_PAYLOAD;
 };
 
 export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
@@ -128,7 +134,7 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 			company_logo: "",
 			highlight: {
 				active: false,
-				color: "",
+				color: "#ffffff",
 				boost: 3,
 			},
 			salary: {
@@ -150,8 +156,8 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 			pay_later: false,
 		},
 		expected_result: {
-			views: 142,
-			clicks: 16,
+			views: DEFAULT_VIEWS,
+			clicks: DEFAULT_CLICKS,
 		},
 	},
 };

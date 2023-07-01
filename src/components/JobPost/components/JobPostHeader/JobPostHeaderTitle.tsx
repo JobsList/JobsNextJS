@@ -2,7 +2,15 @@ import { Chip, Stack, Typography } from "@mui/material";
 import React from "react";
 import JobPostHeaderTags from "./JobPostHeaderTags";
 
-const JobPostHeaderTitle = () => {
+type JobPostHeaderTitleProps = {
+	title?: string;
+	position?: string;
+};
+
+const JobPostHeaderTitle: React.FC<JobPostHeaderTitleProps> = ({
+	title,
+	position,
+}) => {
 	return (
 		<Stack flexWrap="wrap" direction="column">
 			<Stack direction="row" alignItems="center">
@@ -11,7 +19,7 @@ const JobPostHeaderTitle = () => {
 					fontSize={18}
 					fontWeight={(theme) => theme.typography.fontWeightBold}
 				>
-					Post Title
+					{title || "Company"}
 				</Typography>
 				<Chip
 					size="small"
@@ -28,7 +36,7 @@ const JobPostHeaderTitle = () => {
 					}}
 				/>
 			</Stack>
-			<Typography>Company Name</Typography>
+			<Typography>{position || "Position"}</Typography>
 			<JobPostHeaderTags />
 		</Stack>
 	);

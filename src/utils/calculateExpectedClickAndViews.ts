@@ -7,8 +7,8 @@ type RESULT = {
 	views: number;
 };
 
-export const DEFAULT_CLICKS = 142;
-export const DEFAULT_VIEWS = 16;
+export const DEFAULT_CLICKS = 16;
+export const DEFAULT_VIEWS = 142;
 
 const calculateExpectedClickAndViews = (
 	boost: number,
