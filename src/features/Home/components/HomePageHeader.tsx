@@ -6,8 +6,15 @@ import theme from "@/theme";
 
 const HomePageHeader = () => {
 	return (
-		<Stack alignItems="center">
-			<Stack flex={1}>
+		<Stack flex={1} alignItems="center">
+			<Stack
+				direction="row"
+				justifyContent="flex-end"
+				alignItems="center"
+				spacing={5}
+				sx={{ width: "100%" }}
+				mt={5}
+			>
 				<Link
 					sx={{
 						border: 0,
@@ -19,6 +26,18 @@ const HomePageHeader = () => {
 					href="/create-job"
 				>
 					Post a remote job
+				</Link>
+				<Link
+					sx={{
+						borderWidth: 0,
+						backgroundColor: "primary.main",
+						color: "extra.white",
+						padding: (theme) => theme.spacing(4, 7),
+						borderRadius: (theme) => theme.shape.borderRadius / 6,
+					}}
+					href="/login"
+				>
+					Login
 				</Link>
 			</Stack>
 			<Typography

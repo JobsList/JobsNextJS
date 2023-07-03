@@ -11,7 +11,9 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const JobPostCompanyDetails = () => {
+type JobPostCompanyDetailsProps = {};
+
+const JobPostCompanyDetails: React.FC<JobPostCompanyDetailsProps> = ({}) => {
 	return (
 		<Box
 			sx={{

@@ -13,6 +13,7 @@ type TagsInputProps = {
 	values?: Array<any>;
 	placeholder?: string;
 	onChange?: (values: Array<any>) => void;
+	getOptionLabel?: (option: any) => string;
 };
 
 const TagsInput: React.FC<TagsInputProps> = ({
@@ -20,6 +21,7 @@ const TagsInput: React.FC<TagsInputProps> = ({
 	values = [],
 	placeholder = "",
 	onChange = (values) => {},
+	getOptionLabel,
 }) => {
 	return (
 		<Box component="div">
@@ -29,6 +31,7 @@ const TagsInput: React.FC<TagsInputProps> = ({
 				multiple
 				value={values}
 				options={options}
+				getOptionLabel={getOptionLabel}
 				onChange={(_, v) => onChange(v)}
 				renderInput={(params) => (
 					<TextField

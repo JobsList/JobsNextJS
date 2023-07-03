@@ -2,10 +2,39 @@ import React from "react";
 import { Grid } from "@mui/material";
 import JobPostHeaderCompanyLogo from "./JobPostHeaderCompanyLogo";
 import JobPostHeaderTitle from "./JobPostHeaderTitle";
-import JobPostHeaderFilters from "./JobPostHeaderFilters";
+import JobPostHeaderTags from "./JobPostHeaderTags";
 import JobPostHeaderApply from "./JobPostHeaderApply";
+import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 
-const JobPostHeader = ({ onClick = () => {}, showDetails = false }) => {
+type JobPostHeaderProps = {
+	onClick?: () => void;
+	showDetails?: boolean;
+	post: JOB_POST_PAYLOAD;
+	preview?: boolean;
+};
+
+const JobPostHeader: React.FC<JobPostHeaderProps> = ({
+	onClick = () => {},
+	showDetails = false,
+	post,
+	preview,
+}) => {
+	const { post_design, job_details } = post;
+
+	const headerDefaultStyle: any = {
+		padding: (theme: any) => theme.spacing(5),
+		borderRadius: "10px",
+		backgroundColor: "extra.white",
+	};
+
+	if (post_design.highlight.active) {
+		headerDefaultStyle.backgroundColor = post_design.highlight.color;
+	}
+
+	if (job_details.highlight.active) {
+		headerDefaultStyle.backgroundColor = job_details.highlight.color;
+	}
+
 	return (
 		<Grid
 			component="div"
@@ -14,8 +43,9 @@ const JobPostHeader = ({ onClick = () => {}, showDetails = false }) => {
 			columnGap={7}
 			rowGap={4}
 			sx={
-				!showDetails
+				!showDetails && !preview
 					? {
+							...headerDefaultStyle,
 							"&:hover": {
 								opacity: 0.9,
 								cursor: "pointer",
@@ -28,12 +58,14 @@ const JobPostHeader = ({ onClick = () => {}, showDetails = false }) => {
 								display: "none",
 							},
 					  }
-					: {}
+					: {
+							...headerDefaultStyle,
+					  }
 			}
 		>
-			<JobPostHeaderCompanyLogo />
+			<JobPostHeaderCompanyLogo post={post} />
 			<Grid item md={6}>
-				<JobPostHeaderTitle />
+				<JobPostHeaderTitle post={post} preview={preview} />
 			</Grid>
 			<Grid
 				item
@@ -45,7 +77,7 @@ const JobPostHeader = ({ onClick = () => {}, showDetails = false }) => {
 				md={2.5}
 				sm={4}
 			>
-				<JobPostHeaderFilters />
+				<JobPostHeaderTags post={post} preview={preview} />
 			</Grid>
 
 			<Grid
@@ -57,7 +89,7 @@ const JobPostHeader = ({ onClick = () => {}, showDetails = false }) => {
 					alignItems: "center",
 				}}
 			>
-				<JobPostHeaderApply />
+				<JobPostHeaderApply preview={preview} />
 			</Grid>
 		</Grid>
 	);

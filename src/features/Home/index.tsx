@@ -4,16 +4,15 @@ import JobPost from "@/components/JobPost";
 import AdvanceSearch from "@/components/AdvanceSearch";
 
 import HomePageHeader from "./components/HomePageHeader";
+import { useAppSelect } from "@/hooks/useRedux";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
+	const { payload } = useAppSelect((state) => state.create_job);
 	return (
 		<Box>
 			<HomePageHeader />
 			<AdvanceSearch />
-
-			<Box mt={10}>
-				<JobPost />
-			</Box>
+			<Box mt={10}>{/* <JobPost post={payload} /> */}</Box>
 		</Box>
 	);
 };

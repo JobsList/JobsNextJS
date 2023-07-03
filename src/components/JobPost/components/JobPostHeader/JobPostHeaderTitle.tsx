@@ -1,8 +1,17 @@
 import { Chip, Stack, Typography } from "@mui/material";
 import React from "react";
-import JobPostHeaderTags from "./JobPostHeaderTags";
+import JobPostHeaderLocations from "./JobPostHeaderLocations";
+import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 
-const JobPostHeaderTitle = () => {
+type JobPostHeaderTitleProps = {
+	preview?: boolean;
+	post: JOB_POST_PAYLOAD;
+};
+
+const JobPostHeaderTitle: React.FC<JobPostHeaderTitleProps> = ({
+	post,
+	preview,
+}) => {
 	return (
 		<Stack flexWrap="wrap" direction="column">
 			<Stack direction="row" alignItems="center">
@@ -11,25 +20,29 @@ const JobPostHeaderTitle = () => {
 					fontSize={18}
 					fontWeight={(theme) => theme.typography.fontWeightBold}
 				>
-					Post Title
+					{post.company_name || "Company"}
 				</Typography>
-				<Chip
-					size="small"
-					variant="outlined"
-					label="VERIFIED"
-					sx={{
-						borderRadius: 0.5,
-						borderWidth: 0,
-						marginLeft: (theme) => theme.spacing(2),
-						backgroundColor: "extra.greenTag",
-						color: "extra.white",
-						textTransform: "uppercase",
-						fontWeight: (theme) => theme.typography.fontWeightBold,
-					}}
-				/>
+				{!preview ? (
+					<Chip
+						size="small"
+						variant="outlined"
+						label="VERIFIED"
+						sx={{
+							borderRadius: 0.5,
+							borderWidth: 0,
+							marginLeft: (theme) => theme.spacing(2),
+							backgroundColor: "extra.greenTag",
+							color: "extra.white",
+							textTransform: "uppercase",
+							fontWeight: (theme) => theme.typography.fontWeightBold,
+						}}
+					/>
+				) : (
+					<></>
+				)}
 			</Stack>
-			<Typography>Company Name</Typography>
-			<JobPostHeaderTags />
+			<Typography>{post.position || "Position"}</Typography>
+			<JobPostHeaderLocations post={post} />
 		</Stack>
 	);
 };

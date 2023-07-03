@@ -1,6 +1,6 @@
-import getBase64 from "@/utils/getBase64";
-import { Avatar, Box, Typography, styled } from "@mui/material";
 import React, { useRef, useState } from "react";
+import { Avatar, Box, Typography, styled } from "@mui/material";
+import getBase64 from "@/utils/getBase64";
 
 const UploadSection = styled(Box)(({ theme }) => ({
 	width: theme.spacing(70),
@@ -15,8 +15,13 @@ const UploadSection = styled(Box)(({ theme }) => ({
 	overflow: "hidden",
 }));
 
-const UploadFile = () => {
-	const [logo, setLogo] = useState<string>();
+type UploadFileProps = {
+	file?: string;
+	onChange?: (file?: string) => void;
+};
+
+const UploadFile: React.FC<UploadFileProps> = ({ file, onChange }) => {
+	const [logo, setLogo] = useState<string | undefined>(() => file);
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleClick = () => {
@@ -31,6 +36,7 @@ const UploadFile = () => {
 		const file = e.target.files[0];
 		getBase64(file, (base64) => {
 			setLogo(base64?.toString());
+			onChange?.(base64?.toString());
 		});
 	};
 

@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 type ColorPickerProps = {
 	onChange?: (color: string) => void;
@@ -12,16 +12,20 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	color = "#ffffff",
 	size = "small",
 }) => {
+	const [_color, setColor] = useState<string>(() => color);
 	return (
 		<TextField
-			value={color}
+			value={_color}
 			type="color"
 			size={size}
 			sx={{
 				width: (theme) => theme.spacing(50),
 			}}
+			onBlur={(e) => {
+				onChange(_color);
+			}}
 			onChange={(e) => {
-				onChange(e.target.value);
+				setColor(e.target.value);
 			}}
 		/>
 	);
