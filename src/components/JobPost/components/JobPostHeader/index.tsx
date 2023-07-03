@@ -24,6 +24,7 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 	const headerDefaultStyle: any = {
 		padding: (theme: any) => theme.spacing(5),
 		borderRadius: "10px",
+		backgroundColor: "extra.white",
 	};
 
 	if (post_design.highlight.active) {
