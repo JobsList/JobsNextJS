@@ -7,6 +7,7 @@ import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import type { NextComponentType } from "next";
+import { SessionProvider } from "next-auth/react";
 import type { AppContext, AppProps } from "next/app";
 import App from "next/app";
 import Head from "next/head";
@@ -26,7 +27,7 @@ interface MainAppProps extends AppProps {
 function Bootstrap({
 	Component,
 	emotionCache = emotionClientCache,
-	pageProps,
+	pageProps: { session, ...pageProps },
 }: MainAppProps) {
 	const Layout: LayoutComponent =
 		Component.layout || (({ children }) => <>{children}</>);
@@ -45,7 +46,9 @@ function Bootstrap({
 				<ThemeProvider theme={theme}>
 					<CssBaseline />
 					<Layout>
-						<Component {...pageProps} />
+						<SessionProvider session={session}>
+							<Component {...pageProps} />
+						</SessionProvider>
 					</Layout>
 				</ThemeProvider>
 			</CacheProvider>

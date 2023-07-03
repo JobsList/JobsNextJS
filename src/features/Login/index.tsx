@@ -1,5 +1,9 @@
+import React from "react";
+import { Box } from "@mui/material";
+import { signIn } from "next-auth/react";
+
 import Image from "@/components/Image";
-import { Box, Grid } from "@mui/material";
+import Button from "@/components/Button";
 
 const LoginPage: React.FC = () => {
 	return (
@@ -13,6 +17,10 @@ const LoginPage: React.FC = () => {
 			{/**
 			 * Will add google login here once other pages are completed!
 			 */}
+
+			<Button variant="contained" onClick={() => signIn("google")}>
+				Login With Google
+			</Button>
 		</Box>
 	);
 };
