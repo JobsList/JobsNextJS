@@ -3,9 +3,9 @@ import BasicInfo from "./BasicInfo";
 import PostDesign from "./PostDesign";
 import { Stack } from "@mui/material";
 import JobDetails from "./JobDetails";
-import FeedbackSection from "./sections/FeedbackSection";
 import CompanyDetails from "./CompanyDetails";
 import Preview from "./Preview";
+import Feedback from "./Feedback";
 
 const CreatePostForm = () => {
 	return (
@@ -14,7 +14,7 @@ const CreatePostForm = () => {
 			<PostDesign />
 			<JobDetails />
 			<CompanyDetails />
-			<FeedbackSection />
+			<Feedback />
 			<Preview />
 		</Stack>
 	);

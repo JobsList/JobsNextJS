@@ -19,7 +19,7 @@ const CreateJobPost = () => {
 			</Container>
 
 			<Box sx={{ position: "fixed", bottom: 0, width: "100%" }}>
-				<JobPost expandable={false} post={payload} />
+				<JobPost expandable={false} post={payload} preview />
 			</Box>
 		</Box>
 	);

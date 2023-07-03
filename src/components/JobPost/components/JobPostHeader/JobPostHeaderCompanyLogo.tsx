@@ -1,7 +1,14 @@
+import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 import { Avatar, Grid } from "@mui/material";
 import React from "react";
 
-const JobPostHeaderCompanyLogo = () => {
+type JobPostHeaderCompanyLogoProps = {
+	post: JOB_POST_PAYLOAD;
+};
+
+const JobPostHeaderCompanyLogo: React.FC<JobPostHeaderCompanyLogoProps> = ({
+	post,
+}) => {
 	return (
 		<Grid
 			item
@@ -13,7 +20,14 @@ const JobPostHeaderCompanyLogo = () => {
 			md={1}
 			sm={1}
 		>
-			<Avatar sx={{ width: 56, height: 56 }}>C</Avatar>
+			<Avatar
+				src={
+					post.post_design.show_logo.active ? post.job_details.company_logo : ""
+				}
+				sx={{ width: 56, height: 56 }}
+			>
+				C
+			</Avatar>
 		</Grid>
 	);
 };

@@ -21,6 +21,7 @@
     "@types/react-dom": "18.2.6",
     "axios": "^1.4.0",
     "draft-js": "^0.11.7",
+    "draft-js-export-html": "^1.4.1",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "next": "13.4.7",

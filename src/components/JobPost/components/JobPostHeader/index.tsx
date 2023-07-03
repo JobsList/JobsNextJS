@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@mui/material";
 import JobPostHeaderCompanyLogo from "./JobPostHeaderCompanyLogo";
 import JobPostHeaderTitle from "./JobPostHeaderTitle";
-import JobPostHeaderFilters from "./JobPostHeaderFilters";
+import JobPostHeaderTags from "./JobPostHeaderTags";
 import JobPostHeaderApply from "./JobPostHeaderApply";
 import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 
@@ -10,14 +10,30 @@ type JobPostHeaderProps = {
 	onClick?: () => void;
 	showDetails?: boolean;
 	post: JOB_POST_PAYLOAD;
+	preview?: boolean;
 };
 
 const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 	onClick = () => {},
 	showDetails = false,
 	post,
+	preview,
 }) => {
-	console.log("POST => ", post);
+	const { post_design, job_details } = post;
+
+	const headerDefaultStyle: any = {
+		padding: (theme: any) => theme.spacing(5),
+		borderRadius: "10px",
+	};
+
+	if (post_design.highlight.active) {
+		headerDefaultStyle.backgroundColor = post_design.highlight.color;
+	}
+
+	if (job_details.highlight.active) {
+		headerDefaultStyle.backgroundColor = job_details.highlight.color;
+	}
+
 	return (
 		<Grid
 			component="div"
@@ -26,8 +42,9 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 			columnGap={7}
 			rowGap={4}
 			sx={
-				!showDetails
+				!showDetails && !preview
 					? {
+							...headerDefaultStyle,
 							"&:hover": {
 								opacity: 0.9,
 								cursor: "pointer",
@@ -40,15 +57,14 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 								display: "none",
 							},
 					  }
-					: {}
+					: {
+							...headerDefaultStyle,
+					  }
 			}
 		>
-			<JobPostHeaderCompanyLogo />
+			<JobPostHeaderCompanyLogo post={post} />
 			<Grid item md={6}>
-				<JobPostHeaderTitle
-					title={post.company_name}
-					position={post.position}
-				/>
+				<JobPostHeaderTitle post={post} preview={preview} />
 			</Grid>
 			<Grid
 				item
@@ -60,7 +76,7 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 				md={2.5}
 				sm={4}
 			>
-				<JobPostHeaderFilters />
+				<JobPostHeaderTags post={post} preview={preview} />
 			</Grid>
 
 			<Grid
@@ -72,7 +88,7 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 					alignItems: "center",
 				}}
 			>
-				<JobPostHeaderApply />
+				<JobPostHeaderApply preview={preview} />
 			</Grid>
 		</Grid>
 	);

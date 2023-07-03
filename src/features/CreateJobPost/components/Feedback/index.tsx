@@ -1,8 +1,15 @@
-import CardWithTitle from "@/components/CardWithTitle";
-import InputWithLabel from "@/components/InputWithLabel";
 import React from "react";
 
-const FeedbackSection: React.FC = () => {
+import CardWithTitle from "@/components/CardWithTitle";
+import InputWithLabel from "@/components/InputWithLabel";
+import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
+
+import { setJobPostPayload } from "../../ducks/createJobPost.reducer";
+
+const Feedback: React.FC = () => {
+	const dispatch = useAppDispatch();
+	const { payload } = useAppSelect((state) => state.create_job);
+
 	return (
 		<CardWithTitle title="Feedback about Remote OK">
 			<InputWithLabel
@@ -15,9 +22,18 @@ const FeedbackSection: React.FC = () => {
 					minRows: 8,
 					maxRows: 20,
 				}}
+				value={payload.feedback}
+				onChange={(e) =>
+					dispatch(
+						setJobPostPayload({
+							...payload,
+							feedback: e.target.value,
+						})
+					)
+				}
 			/>
 		</CardWithTitle>
 	);
 };
 
-export default FeedbackSection;
+export default Feedback;

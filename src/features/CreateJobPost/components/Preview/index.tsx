@@ -28,7 +28,13 @@ const Preview: React.FC = () => {
 					backgroundColor: "extra.white",
 				}}
 			>
-				<JobPost expandable={false} expanded borderd={false} post={payload} />
+				<JobPost
+					expandable={false}
+					preview
+					expanded
+					borderd={false}
+					post={payload}
+				/>
 			</Box>
 		</CardWithTitle>
 	);

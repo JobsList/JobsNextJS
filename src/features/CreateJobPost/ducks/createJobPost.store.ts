@@ -52,7 +52,7 @@ export type JOB_DETAIL_TYPE = {
 	salary: SALARY;
 	job_desc: EditorState;
 	benefits: Array<BenefitType>;
-	howToApply?: EditorState;
+	howToApply: EditorState;
 	apply_with_url?: string;
 	apply_with_email?: string;
 };
@@ -66,13 +66,14 @@ export type COMPANY_DETAILS_TYPE = {
 	pay_later?: boolean;
 };
 
-export type FEEDBACK_TYPE = {
-	feedback?: string;
-};
-
 export type EXPECTED_RESULT = {
 	views: number;
 	clicks: number;
+};
+
+export type LOCATION = {
+	name: string;
+	emoji: string;
 };
 
 export type JOB_POST_PAYLOAD = {
@@ -81,11 +82,11 @@ export type JOB_POST_PAYLOAD = {
 	position: string;
 	positionType: string;
 	tags: Array<string>;
-	location: Array<string>;
+	location: Array<LOCATION>;
 	post_design: POST_DESIGN_TYPE;
 	job_details: JOB_DETAIL_TYPE;
 	company_detail: COMPANY_DETAILS_TYPE;
-	feedback?: FEEDBACK_TYPE;
+	feedback?: string;
 	expected_result: EXPECTED_RESULT;
 };
 
@@ -103,7 +104,7 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 		position: "",
 		positionType: "full-time",
 		tags: [],
-		location: [],
+		location: [{ name: "Worldwide", emoji: "🌏" }],
 		post_design: {
 			premium: false,
 			show_logo: {
@@ -159,5 +160,6 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 			views: DEFAULT_VIEWS,
 			clicks: DEFAULT_CLICKS,
 		},
+		feedback: "",
 	},
 };

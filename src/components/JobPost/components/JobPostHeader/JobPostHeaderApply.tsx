@@ -1,6 +1,7 @@
 import React from "react";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { Button as MUIButton, Typography, styled } from "@mui/material";
+import { Typography, styled } from "@mui/material";
+import MUIButton from "@/components/Button";
 
 const Button = styled(MUIButton)(({ theme }) => ({
 	marginLeft: theme.spacing(6),
@@ -9,20 +10,30 @@ const Button = styled(MUIButton)(({ theme }) => ({
 	},
 }));
 
-const JobPostHeaderApply = () => {
+type JobPostHeaderApplyProps = {
+	preview?: boolean;
+};
+
+const JobPostHeaderApply: React.FC<JobPostHeaderApplyProps> = ({ preview }) => {
 	return (
 		<>
-			<Typography
-				sx={{
-					display: "flex",
-					alignItems: "center",
-					marginLeft: (theme) => theme.spacing(15),
-				}}
+			{!preview ? (
+				<Typography
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						marginLeft: (theme) => theme.spacing(15),
+					}}
+				>
+					<AccessTimeIcon sx={{ marginRight: (theme) => theme.spacing(2) }} />
+					2d
+				</Typography>
+			) : null}
+			<Button
+				preview={preview}
+				variant={!preview ? "contained" : "outlined"}
+				fullWidth
 			>
-				<AccessTimeIcon sx={{ marginRight: (theme) => theme.spacing(2) }} />
-				2d
-			</Typography>
-			<Button variant="contained" fullWidth>
 				Apply
 			</Button>
 		</>

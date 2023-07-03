@@ -9,6 +9,7 @@ type JobPostProps = {
 	expandable?: boolean;
 	expanded?: boolean;
 	borderd?: boolean;
+	preview?: boolean;
 	post: JOB_POST_PAYLOAD;
 };
 
@@ -16,6 +17,7 @@ const JobPost: React.FC<JobPostProps> = ({
 	expandable = true,
 	expanded,
 	borderd = true,
+	preview,
 	post,
 }) => {
 	const [showDetails, setDetailsState] = useState(() => expanded || false);
@@ -29,9 +31,6 @@ const JobPost: React.FC<JobPostProps> = ({
 		<Box
 			sx={{
 				...wrapperStyle,
-				borderRadius: "10px",
-				backgroundColor: "extra.white",
-				padding: (theme) => theme.spacing(5),
 			}}
 		>
 			<JobPostHeader
@@ -41,13 +40,14 @@ const JobPost: React.FC<JobPostProps> = ({
 					setDetailsState(!showDetails);
 				}}
 				showDetails={showDetails}
+				preview={preview}
 				post={post}
 			/>
 
 			{showDetails && (
 				<>
-					<JobPostDetails />
-					<HowToApply />
+					<JobPostDetails post={post} preview={preview} />
+					<HowToApply post={post} preview={preview} />
 				</>
 			)}
 		</Box>

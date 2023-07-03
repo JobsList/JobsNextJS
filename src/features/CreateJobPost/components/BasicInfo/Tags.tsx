@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import TagsInput from "../../../../components/TagsInput";
 import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
 import { setJobPostPayload } from "../../ducks/createJobPost.reducer";
+import tagList from "@/utils/tagList.json";
 
 const Tags: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -13,7 +14,7 @@ const Tags: React.FC = () => {
 		<TagsInput
 			values={tags}
 			onChange={(t) => dispatch(setJobPostPayload({ ...payload, tags: t }))}
-			options={["a", "b", "c"]}
+			options={tagList}
 			placeholder="TAGS, KEYWORDS OR STACKS"
 		/>
 	);

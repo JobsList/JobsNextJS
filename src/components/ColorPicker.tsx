@@ -12,7 +12,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	color = "#ffffff",
 	size = "small",
 }) => {
-	const [_color, setColor] = useState<string | undefined>(() => color);
+	const [_color, setColor] = useState<string>(() => color);
 	return (
 		<TextField
 			value={_color}
@@ -22,7 +22,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				width: (theme) => theme.spacing(50),
 			}}
 			onBlur={(e) => {
-				onChange(color);
+				onChange(_color);
 			}}
 			onChange={(e) => {
 				setColor(e.target.value);
