@@ -1,16 +1,21 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import React from "react";
 import JobPost from "@/components/JobPost";
 import AdvanceSearch from "@/components/AdvanceSearch";
 
 import HomePageHeader from "./components/HomePageHeader";
-import { useAppSelect } from "@/hooks/useRedux";
+import UserAvatar from "@/components/UserAvatar";
+import { User } from "@/types/User";
 
-const HomePage: React.FC = () => {
-	const { payload } = useAppSelect((state) => state.create_job);
+type HomePageProps = {
+	user: User;
+};
+
+const HomePage: React.FC<HomePageProps> = ({ user }) => {
 	return (
 		<Box>
-			<HomePageHeader />
+			<HomePageHeader user={user} />
+
 			<AdvanceSearch />
 			<Box mt={10}>{/* <JobPost post={payload} /> */}</Box>
 		</Box>

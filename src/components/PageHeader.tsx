@@ -5,7 +5,7 @@ import ImageComponent from "./Image";
 
 const Image = styled(ImageComponent)(({ theme }) => ({
 	position: "absolute",
-	zIndex: -2,
+	zIndex: -1,
 	aspectRatio: "4.5/1",
 	[theme.breakpoints.down("md")]: {
 		aspectRatio: "1.3/1",
@@ -14,7 +14,12 @@ const Image = styled(ImageComponent)(({ theme }) => ({
 
 const PageHeader: React.FC = () => {
 	return (
-		<Box component="div" sx={{ position: "relative" }}>
+		<Box
+			component="div"
+			sx={{
+				position: "relative",
+			}}
+		>
 			<Image src="/images/header.jpg" alt="job-search" />
 			<Link
 				sx={{
