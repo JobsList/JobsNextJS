@@ -12,8 +12,6 @@ const options: Options = {
 	blockRenderers: {},
 	entityStyleFn: (entity) => {
 		const type = entity.getType();
-		console.log("type ==> ", type);
-
 		if (type === "p") {
 			const data = entity.getData();
 			return {

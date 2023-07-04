@@ -8,7 +8,6 @@ type RenderUserOrLoginProps = {
 };
 
 const RenderUserOrLogin: React.FC<RenderUserOrLoginProps> = ({ user }) => {
-	console.log("USER ===> ", user);
 	if (user) {
 		return <UserAvatar user={user} />;
 	}
