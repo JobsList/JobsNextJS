@@ -5,13 +5,17 @@ import AdvanceSearch from "@/components/AdvanceSearch";
 
 import HomePageHeader from "./components/HomePageHeader";
 import UserAvatar from "@/components/UserAvatar";
+import { User } from "@/types/User";
 
-const HomePage: React.FC = () => {
+type HomePageProps = {
+	user: User;
+};
+
+const HomePage: React.FC<HomePageProps> = ({ user }) => {
 	return (
 		<Box>
-			<HomePageHeader />
+			<HomePageHeader user={user} />
 
-			<UserAvatar />
 			<AdvanceSearch />
 			<Box mt={10}>{/* <JobPost post={payload} /> */}</Box>
 		</Box>
