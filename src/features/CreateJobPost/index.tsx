@@ -5,7 +5,7 @@ import JobPost from "@/components/JobPost";
 import Appbar from "@/components/Appbar";
 import { useAppSelect } from "@/hooks/useRedux";
 
-const CreateJobPost = () => {
+const CreateJobPost: React.FC = () => {
 	const { payload } = useAppSelect((state) => state.create_job);
 	return (
 		<Box sx={{ position: "relative" }}>
