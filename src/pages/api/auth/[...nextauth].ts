@@ -3,6 +3,7 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: AuthOptions = {
+	secret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
 	providers: [
 		GoogleProvider({
 			clientId: `${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`,

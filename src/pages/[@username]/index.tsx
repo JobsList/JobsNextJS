@@ -3,7 +3,6 @@ import PageWithLayoutType from "@/layouts";
 import BaseLayout from "@/layouts/BaseLayout";
 import session from "@/lib/session";
 import { User } from "@/types/User";
-import { Box } from "@mui/material";
 import { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
@@ -35,12 +34,12 @@ type UserProfileProps = {
 
 const UserProfile: NextPage<UserProfileProps> = ({ title, user }) => {
 	return (
-		<Box component="div">
+		<React.Fragment>
 			<Head>
 				<title>{title}</title>
 			</Head>
 			<ProfilePage user={user} />
-		</Box>
+		</React.Fragment>
 	);
 };
 
