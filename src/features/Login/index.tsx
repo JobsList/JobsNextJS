@@ -4,6 +4,7 @@ import { signIn } from "next-auth/react";
 
 import Image from "@/components/Image";
 import Button from "@/components/Button";
+import GoogleSvg from "@/icons/GoogleSvg";
 
 const LoginPage: React.FC = () => {
 	return (
@@ -38,8 +39,13 @@ const LoginPage: React.FC = () => {
 				alignItems="center"
 				sx={{ height: "100vh" }}
 			>
-				<Button variant="contained" onClick={() => signIn("google")}>
-					Login With Google
+				<Button
+					size="large"
+					variant="contained"
+					onClick={() => signIn("google")}
+				>
+					<GoogleSvg sx={{ marginRight: (theme) => theme.spacing(2) }} /> Login
+					With Google
 				</Button>
 			</Stack>
 		</Box>

@@ -1,8 +1,8 @@
 import React from "react";
+import { NextPage } from "next";
 
 import LoginPage from "@/features/Login";
 import session from "@/lib/session";
-import { NextPage } from "next";
 
 export const getServerSideProps = async (ctx: any) => {
 	const userSession = await session(ctx);
