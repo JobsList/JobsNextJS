@@ -4,6 +4,7 @@ import GlobalSearch from "@/components/GlobalSearch";
 import Link from "@/components/Link";
 import { User } from "@/types/User";
 import RenderUserOrLogin from "./RenderUserOrLogin";
+import PageMainHeader from "@/components/PageMainHeader";
 
 type HomePageHeaderProps = {
 	user: User;
@@ -12,28 +13,7 @@ type HomePageHeaderProps = {
 const HomePageHeader: React.FC<HomePageHeaderProps> = ({ user }) => {
 	return (
 		<Stack flex={1} alignItems="center">
-			<Stack
-				direction="row"
-				justifyContent="flex-end"
-				alignItems="center"
-				spacing={5}
-				sx={{ width: "100%" }}
-				mt={5}
-			>
-				<Link
-					sx={{
-						border: 0,
-						backgroundColor: "primary.main",
-						color: "extra.white",
-						padding: (theme) => theme.spacing(4, 7),
-						borderRadius: (theme) => theme.shape.borderRadius / 6,
-					}}
-					href="/create-job"
-				>
-					Post a remote job
-				</Link>
-				<RenderUserOrLogin user={user} />
-			</Stack>
+			<PageMainHeader user={user} />
 			<Typography
 				color="extra.white"
 				fontSize={28}
