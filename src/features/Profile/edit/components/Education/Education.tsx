@@ -1,8 +1,8 @@
 import React from "react";
-import EmploymentRow from "./EmploymentRow";
+import EmploymentRow from "./EducationRow";
 import Button from "@/components/Button";
 
-const EmploymentInputs: React.FC = () => {
+const Education: React.FC = () => {
 	return (
 		<>
 			<EmploymentRow />
@@ -17,4 +17,4 @@ const EmploymentInputs: React.FC = () => {
 	);
 };
 
-export default EmploymentInputs;
+export default Education;

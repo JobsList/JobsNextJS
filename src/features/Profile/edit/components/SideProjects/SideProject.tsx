@@ -1,11 +1,11 @@
 import React from "react";
-import EmploymentRow from "./EmploymentRow";
 import Button from "@/components/Button";
+import SideProjectRow from "./SideProjectRow";
 
-const EmploymentInputs: React.FC = () => {
+const SideProject: React.FC = () => {
 	return (
 		<>
-			<EmploymentRow />
+			<SideProjectRow />
 
 			<Button
 				variant="contained"
@@ -17,4 +17,4 @@ const EmploymentInputs: React.FC = () => {
 	);
 };
 
-export default EmploymentInputs;
+export default SideProject;

@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Divider, Stack } from "@mui/material";
+import { Card, CardContent, Divider, Stack } from "@mui/material";
 import React from "react";
 import Username from "./Username";
 import AccountType from "./AccountType";
@@ -82,11 +82,6 @@ const UserDetail = () => {
 					<PreferredPerYear />
 					<Divider flexItem />
 					<PreferredHourly />
-
-					<Divider flexItem />
-					<Button fullWidth variant="contained">
-						Save changes
-					</Button>
 				</Stack>
 			</CardContent>
 		</Card>
