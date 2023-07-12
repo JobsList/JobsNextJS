@@ -1,6 +1,6 @@
-import CreateJobPost from "@/features/CreateJobPost";
+import { CreateJobPostPage } from "@/features";
 import session from "@/lib/session";
-import { AppContext } from "next/app";
+import { NextPage } from "next";
 import React from "react";
 
 export const getServerSideProps = async (ctx: any) => {
@@ -22,8 +22,8 @@ export const getServerSideProps = async (ctx: any) => {
 	};
 };
 
-const CreateJob: React.FC = () => {
-	return <CreateJobPost />;
+const CreateJob: NextPage = () => {
+	return <CreateJobPostPage />;
 };
 
 export default CreateJob;

@@ -11,12 +11,15 @@ import {
 } from "@mui/material";
 import React from "react";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+import Link from "../Link";
 
 type UserAvatarProps = {
 	user: User;
 };
 
 const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
+	const router = useRouter();
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 
@@ -57,12 +60,15 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
 				transformOrigin={{ horizontal: "right", vertical: "top" }}
 				anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 			>
-				<MenuItem onClick={handleClose}>
-					<ListItemIcon>
-						<AccountCircleIcon fontSize="small" />
-					</ListItemIcon>
-					Profile
-				</MenuItem>
+				{/** TODO: Need to change this route to dynamic route. but first user has to update his profile */}
+				<Link href="/@123">
+					<MenuItem>
+						<ListItemIcon>
+							<AccountCircleIcon fontSize="small" />
+						</ListItemIcon>
+						Profile
+					</MenuItem>
+				</Link>
 				<MenuItem onClick={() => signOut()}>
 					<ListItemIcon>
 						<LogoutIcon fontSize="small" />

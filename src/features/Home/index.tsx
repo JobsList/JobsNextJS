@@ -4,7 +4,6 @@ import JobPost from "@/components/JobPost";
 import AdvanceSearch from "@/components/AdvanceSearch";
 
 import HomePageHeader from "./components/HomePageHeader";
-import UserAvatar from "@/components/UserAvatar";
 import { User } from "@/types/User";
 
 type HomePageProps = {

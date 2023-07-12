@@ -1,8 +1,8 @@
 import React from "react";
+import { NextPage } from "next";
 
 import LoginPage from "@/features/Login";
 import session from "@/lib/session";
-import { AppContext } from "next/app";
 
 export const getServerSideProps = async (ctx: any) => {
 	const userSession = await session(ctx);
@@ -21,7 +21,7 @@ export const getServerSideProps = async (ctx: any) => {
 	};
 };
 
-const Login: React.FC = () => {
+const Login: NextPage = () => {
 	return <LoginPage />;
 };
 
