@@ -1,9 +1,9 @@
 import { SvgIcon } from "@mui/material";
 import { SvgIconType } from "./SvgIconType";
 
-const TelegramSVG: SvgIconType = () => {
+const TelegramSVG: SvgIconType = (props) => {
 	return (
-		<SvgIcon width="64" height="64" version="1">
+		<SvgIcon {...props} width="64" height="64" version="1">
 			<path
 				style={{ opacity: 0.2 }}
 				d="m 4.0507982,32.000818 c -0.0118,0.33399 -0.050799,0.661981 -0.050799,0.999972 C 3.9999996,48.512352 16.487647,61 31.99921,61 47.510773,61 59.99842,48.512352 59.99842,33.00079 c 0,-0.337671 -0.03904,-0.665262 -0.05078,-0.999972 C 59.419655,47.042394 47.172,59.000056 31.998428,59.000056 16.824456,59.000056 4.5772013,47.042394 4.0492162,32.000818 Z"
