@@ -1,9 +1,12 @@
 import React from "react";
-import { AppBar, Button, Stack, Toolbar } from "@mui/material";
-import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
+import { AppBar, Stack, Toolbar } from "@mui/material";
 import Title from "../Title";
 
-const Appbar: React.FC = () => {
+type AppbarProps = {
+	children: React.ReactNode;
+};
+
+const Appbar: React.FC<AppbarProps> = (props) => {
 	return (
 		<AppBar
 			position="relative"
@@ -21,10 +24,7 @@ const Appbar: React.FC = () => {
 					<Title textAlign="center" color="#000">
 						Logo
 					</Title>
-					<Title color="extra.black">Hire remotely</Title>
-					<Button disableElevation variant="contained" size="large">
-						Buy a bundle <TrendingFlatIcon sx={{ ml: 10 }} />
-					</Button>
+					{props.children}
 				</Stack>
 			</Toolbar>
 		</AppBar>
