@@ -1,17 +1,24 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import React from "react";
+import JobPost from "@/components/JobPost";
+import AdvanceSearch from "@/components/AdvanceSearch";
 
-type HomeProps = {
-	data: Array<any>;
+import HomePageHeader from "./components/HomePageHeader";
+import { User } from "@/types/User";
+
+type HomePageProps = {
+	user: User;
 };
 
-const Home: React.FC<HomeProps> = ({ data }) => {
+const HomePage: React.FC<HomePageProps> = ({ user }) => {
 	return (
-		<>
-			<Typography>Home Page</Typography>
-			<code>{data ? JSON.stringify(data) : null}</code>
-		</>
+		<Box>
+			<HomePageHeader user={user} />
+
+			<AdvanceSearch />
+			<Box mt={10}>{/* <JobPost post={payload} /> */}</Box>
+		</Box>
 	);
 };
 
-export default Home;
+export default HomePage;
