@@ -1,3 +1,2 @@
-export const POSTS = "/api/v1/posts";
-
-export const DUMMY_PRODUCTS = "products";
+export const LOGIN = "/auth/login";
+export const LOGOUT = "/auth/logout/:id";

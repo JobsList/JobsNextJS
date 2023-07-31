@@ -25,7 +25,8 @@ const httpClient = async (payload: Payload) => {
 	try {
 		const { path, method, data, query, extraBaseUrl } = payload;
 		const baseURL =
-			extraBaseUrl || `${process.env.BASE_URL}/${process.env.API_VERSION}`;
+			extraBaseUrl ||
+			`${process.env.NEXT_PUBLIC_BASE_URL}/${process.env.NEXT_PUBLIC_API_VERSION}`;
 		const http = axios.create({
 			baseURL,
 		});
@@ -58,17 +59,17 @@ const httpClient = async (payload: Payload) => {
 		};
 	} catch (err: any) {
 		// Add any logic for error, i.e to show any notification etc globally in application.
-		const { message, status } = err as AxiosError;
 
-		console.log("ERROR ====> ", err);
+		if (err instanceof AxiosError) {
+			// console.log(err.status, err.message);
+			return {
+				status: err.status,
+				message: err.message,
+			};
+		}
 		/**
 		 * Error logic will be handle here
 		 */
-		// let errorMessage = message;
-		// const { error = "" } = err.response.data || {};
-		// if (error) {
-		// 	errorMessage = error;
-		// }
 
 		return {
 			response: null,

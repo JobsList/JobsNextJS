@@ -45,8 +45,11 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
 					aria-expanded={open ? "true" : undefined}
 					sx={{ ml: 2 }}
 				>
-					<Avatar sx={{ width: 32, height: 32 }} src={user.user?.image || ""}>
-						{user.user?.name?.substring(0, 1)}
+					<Avatar
+						sx={{ width: 32, height: 32 }}
+						src={user.user?.profile?.photo || ""}
+					>
+						{user.user?.email?.substring(0, 1)}
 					</Avatar>
 				</IconButton>
 			</Tooltip>
