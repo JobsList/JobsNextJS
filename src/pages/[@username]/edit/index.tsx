@@ -1,4 +1,4 @@
-import { EditProfilePage } from "@/features";
+import { EditProfilePage, editProfileServerSideProps } from "@/features";
 import PageWithLayoutType from "@/layouts";
 import BaseLayout from "@/layouts/BaseLayout";
 import { NextPage } from "next";
@@ -9,5 +9,7 @@ const UserProfileEdit: NextPage = () => {
 };
 
 (UserProfileEdit as PageWithLayoutType).layout = BaseLayout;
+
+export const getServerSideProps = editProfileServerSideProps;
 
 export default UserProfileEdit;
