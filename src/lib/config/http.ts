@@ -14,16 +14,17 @@ type Payload = {
 	data?: any;
 	query?: any;
 	extraBaseUrl?: string;
+	token?: string;
 };
 
-const getUrlEndPoint = (url: EndpointType, params?: any) => {
+const getUrlEndPoint = (url: EndpointType, params?: Object) => {
 	const urlString = new UrlPattern(endpoints[url]);
-	return urlString.stringify(params);
+	return urlString?.stringify?.(params);
 };
 
 const httpClient = async (payload: Payload) => {
 	try {
-		const { path, method, data, query, extraBaseUrl } = payload;
+		const { path, method, data, query, extraBaseUrl, token } = payload;
 		const baseURL =
 			extraBaseUrl ||
 			`${process.env.NEXT_PUBLIC_BASE_URL}/${process.env.NEXT_PUBLIC_API_VERSION}`;
@@ -49,7 +50,12 @@ const httpClient = async (payload: Payload) => {
 			options.data = JSON.stringify(data);
 		}
 
-		//TODO: Will add token logic here once we start adding login and logout logic here
+		if (token) {
+			options.headers = {
+				...options.headers,
+				Authorization: `Bearer ${token}`,
+			};
+		}
 
 		const response = await http(options);
 

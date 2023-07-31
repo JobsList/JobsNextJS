@@ -31,6 +31,7 @@ type UserInfo = {
 };
 
 export type User = {
+	accessToken?: string;
 	expires?: string;
 	user?: UserInfo;
 };
