@@ -3,22 +3,26 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {
 	Avatar,
+	Button,
 	IconButton,
 	ListItemIcon,
 	Menu,
 	MenuItem,
 	Tooltip,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import Link from "../Link";
+import httpClient from "@/lib/config/http";
 
 type UserAvatarProps = {
 	user: User;
 };
 
 const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
+	const [loading, setLoading] = useState<boolean>(() => false);
+	const { user: userData } = user;
 	const router = useRouter();
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
@@ -34,6 +38,14 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
 		return <></>;
 	}
 
+	let profileLink = "";
+
+	if (userData?.profile && userData?.profile?.username) {
+		profileLink = `/@${userData?.profile?.username}`;
+	} else {
+		profileLink = `/@${userData?.email}`;
+	}
+
 	return (
 		<React.Fragment>
 			<Tooltip title="Account settings">
@@ -45,8 +57,11 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
 					aria-expanded={open ? "true" : undefined}
 					sx={{ ml: 2 }}
 				>
-					<Avatar sx={{ width: 32, height: 32 }} src={user.user?.image || ""}>
-						{user.user?.name?.substring(0, 1)}
+					<Avatar
+						sx={{ width: 32, height: 32 }}
+						src={user.user?.profile?.photo || ""}
+					>
+						{user.user?.email?.substring(0, 1)}
 					</Avatar>
 				</IconButton>
 			</Tooltip>
@@ -60,8 +75,7 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
 				transformOrigin={{ horizontal: "right", vertical: "top" }}
 				anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
 			>
-				{/** TODO: Need to change this route to dynamic route. but first user has to update his profile */}
-				<Link href="/@123">
+				<Link href={`${profileLink}`}>
 					<MenuItem>
 						<ListItemIcon>
 							<AccountCircleIcon fontSize="small" />
@@ -69,11 +83,35 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
 						Profile
 					</MenuItem>
 				</Link>
-				<MenuItem onClick={() => signOut()}>
+				<MenuItem
+					onClick={async () => {
+						if (loading) {
+							return;
+						}
+
+						setLoading(true);
+						// Logout user out from our server
+						const { response } = await httpClient({
+							method: "GET",
+							path: {
+								url: "LOGOUT",
+								params: {
+									id: userData?.id,
+								},
+							},
+							token: user?.accessToken || "",
+						});
+
+						if (response?.data) {
+							signOut();
+						}
+						setLoading(false);
+					}}
+				>
 					<ListItemIcon>
 						<LogoutIcon fontSize="small" />
 					</ListItemIcon>
-					Logout
+					{loading ? "loading..." : "Logout"}
 				</MenuItem>
 			</Menu>
 		</React.Fragment>
