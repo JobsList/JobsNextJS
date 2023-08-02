@@ -57,7 +57,7 @@ export type Profile = {
 	twitter: string;
 	linkedIn: string;
 	insta: string;
-	educations: Education[];
+	education: Education[];
 	employment: Employment[];
 	side_projects: SideProjects[];
 	profile_id: number;
@@ -68,10 +68,6 @@ export type EditProfileState = {
 	loading: boolean;
 	error: string;
 	profile: Profile;
-	// Below will be used separetely for updating, or creating
-	educations: Education[];
-	side_projects: SideProjects[];
-	employment: Employment[];
 };
 
 export const editProfileState: EditProfileState = {
@@ -102,7 +98,7 @@ export const editProfileState: EditProfileState = {
 		twitter: "",
 		linkedIn: "",
 		insta: "",
-		educations: [
+		education: [
 			{
 				id: undefined,
 				start_date: new Date(),
@@ -119,39 +115,4 @@ export const editProfileState: EditProfileState = {
 		profile_id: 0,
 		user_id: 0,
 	},
-	educations: [
-		{
-			id: undefined,
-			start_date: new Date(),
-			end_date: new Date(),
-			title: "",
-			school: "",
-			link: "",
-			profile_id: 0,
-			user_id: 0,
-		},
-	],
-	side_projects: [
-		{
-			id: undefined,
-			start_date: new Date(),
-			end_date: new Date(),
-			project_name: "",
-			link: "",
-			profile_id: 0,
-			user_id: 0,
-		},
-	],
-	employment: [
-		{
-			id: undefined,
-			start_date: new Date(),
-			end_date: new Date(),
-			title: "",
-			company: "",
-			link: "",
-			profile_id: 0,
-			user_id: 0,
-		},
-	],
 };

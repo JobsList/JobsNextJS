@@ -39,10 +39,11 @@ const Education: React.FC<Props> = ({ user, profile }) => {
 	);
 
 	useEffect(() => {
-		if (profile.educations) {
-			dispatch(setEducation(profile.educations));
+		if (profile.education) {
+			console.log(profile.education);
+			dispatch(setEducation(profile.education));
 		}
-	}, [dispatch, profile.educations]);
+	}, [dispatch, profile.education]);
 
 	return (
 		<>

@@ -15,12 +15,6 @@ const editProfileSlice = createSlice({
 		setEditProfile: (state, { payload }) => {
 			state.profile = payload;
 		},
-		setEducation: (state, { payload }) => {
-			state.educations = payload;
-		},
-		setEmployment: (state, { payload }) => {
-			state.employment = payload;
-		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(createOrUpdateProfile.pending, (state) => {
@@ -52,7 +46,6 @@ const editProfileSlice = createSlice({
 	},
 });
 
-export const { setEditProfile, setEducation, setEmployment, setError } =
-	editProfileSlice.actions;
+export const { setEditProfile, setError } = editProfileSlice.actions;
 
 export default editProfileSlice.reducer;
