@@ -11,7 +11,7 @@ import Education from "./Education";
 import Button from "@/components/Button";
 import { User } from "@/types/User";
 import { Profile } from "../../ducks/edit_profile.state";
-import { useAppDispatch } from "@/hooks/useRedux";
+import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
 import { createOrUpdateEducation } from "../../ducks/educations/educations.actions";
 import useAuth from "@/hooks/useAuth";
 
@@ -22,6 +22,7 @@ type Props = {
 const Educations: React.FC<Props> = ({ profile }) => {
 	const { user } = useAuth();
 	const dispatch = useAppDispatch();
+	const { loading } = useAppSelect((state) => state.educations);
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
@@ -48,8 +49,8 @@ const Educations: React.FC<Props> = ({ profile }) => {
 					<Education user={user} profile={profile} />
 
 					<Stack mt={10}>
-						<Button type="submit" variant="contained">
-							Save Changes
+						<Button disabled={loading} type="submit" variant="contained">
+							{loading ? "Loading..." : "Save Changes"}
 						</Button>
 					</Stack>
 				</CardContent>
