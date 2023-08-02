@@ -46,7 +46,8 @@ export type Profile = {
 	bio: string;
 	skills: string[];
 	languages: string[];
-	available_from: Date;
+	available_from: string;
+	available: boolean;
 	prefer_time_zone: string[];
 	annual_pay: number;
 	hourly_rate: number;
@@ -89,7 +90,8 @@ export const editProfileState: EditProfileState = {
 		bio: "",
 		skills: [],
 		languages: [],
-		available_from: new Date(),
+		available_from: new Date().toISOString(),
+		available: true,
 		prefer_time_zone: [],
 		annual_pay: 0,
 		hourly_rate: 0,

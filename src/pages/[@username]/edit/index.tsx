@@ -4,8 +4,12 @@ import BaseLayout from "@/layouts/BaseLayout";
 import { NextPage } from "next";
 import React from "react";
 
-const UserProfileEdit: NextPage = () => {
-	return <EditProfilePage />;
+type Props = {
+	user: any;
+};
+
+const UserProfileEdit: NextPage<Props> = (props) => {
+	return <EditProfilePage user={props.user} />;
 };
 
 (UserProfileEdit as PageWithLayoutType).layout = BaseLayout;

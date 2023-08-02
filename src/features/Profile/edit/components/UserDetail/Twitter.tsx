@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useCallback } from "react";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EditProfileInput from "./EditProfileInput";
 import { TextField } from "@mui/material";
 import Label from "./Label";
+import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
+import { setEditProfile } from "../../ducks/edit_profile.reducer";
 
 const Twitter: React.FC = () => {
+	const dispatch = useAppDispatch();
+	const { profile } = useAppSelect((state) => state.edit_profile);
+
+	const onChange = useCallback(
+		(twitter: string) => dispatch(setEditProfile({ ...profile, twitter })),
+		[profile, dispatch]
+	);
 	return (
 		<EditProfileInput
 			label={
@@ -24,7 +33,13 @@ const Twitter: React.FC = () => {
 				/>
 			}
 		>
-			<TextField size="small" type="text" placeholder="Twitter username" />
+			<TextField
+				size="small"
+				type="text"
+				placeholder="Twitter username"
+				value={profile.twitter}
+				onChange={(e) => onChange(e.target.value)}
+			/>
 		</EditProfileInput>
 	);
 };
