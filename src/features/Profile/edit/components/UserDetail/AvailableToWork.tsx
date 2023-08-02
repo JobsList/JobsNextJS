@@ -3,13 +3,13 @@ import { Checkbox, Typography } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
 
 import EditProfileInput from "./EditProfileInput";
 import Label from "./Label";
 import SubText from "./SubText";
 import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
 import { setEditProfile } from "../../ducks/edit_profile.reducer";
-import dayjs from "dayjs";
 
 const AvailableToWork: React.FC = () => {
 	const dispatch = useAppDispatch();

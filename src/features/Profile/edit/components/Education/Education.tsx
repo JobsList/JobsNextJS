@@ -1,15 +1,67 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import EmploymentRow from "./EducationRow";
 import Button from "@/components/Button";
+import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
+import { Profile } from "../../ducks/edit_profile.state";
+import { User } from "@/types/User";
+import { Education } from "../../ducks/educations/education.state";
+import { setEducation } from "../../ducks/educations/educations.reducer";
 
-const Education: React.FC = () => {
+type Props = {
+	user: any;
+	profile: Profile;
+};
+
+const Education: React.FC<Props> = ({ user, profile }) => {
+	const newEd: Education = {
+		start_date: new Date(),
+		end_date: new Date(),
+		title: "",
+		school: "",
+		link: "",
+		profile_id: profile?.id || 0,
+		user_id: parseInt(user?.user?.id || "0"),
+	};
+
+	const dispatch = useAppDispatch();
+	const { educations } = useAppSelect((state) => state.educations);
+
+	const onChange = useCallback(
+		(education: Education, index: number) => {
+			const _educationsList = [...educations];
+			education.profile_id = +`${profile?.id}`;
+			education.user_id = +`${user?.user?.id}`;
+			_educationsList[index] = education;
+
+			console.log("======> ", education);
+
+			dispatch(setEducation(_educationsList));
+		},
+		[dispatch, educations, profile?.id, user?.user?.id]
+	);
+
+	useEffect(() => {
+		if (profile.educations) {
+			dispatch(setEducation(profile.educations));
+		}
+	}, [dispatch, profile.educations]);
+
 	return (
 		<>
-			<EmploymentRow />
+			{educations.map((ed, idx) => (
+				<EmploymentRow
+					key={ed.title + idx}
+					education={ed}
+					onChange={(e) => onChange(e, idx)}
+				/>
+			))}
 
 			<Button
 				variant="contained"
 				sx={{ marginTop: (theme) => theme.spacing(10) }}
+				onClick={() => {
+					dispatch(setEducation([...educations, newEd]));
+				}}
 			>
 				Add a new row
 			</Button>

@@ -29,8 +29,8 @@ type CloudinaryAPiResponse = {
  * We will use getServerSideProps to generate a page on the server.
  * This api call is only to use an api call on the client when user clicks on save button
  */
-export const createEditProfile = createAsyncThunk(
-	"createProfile",
+export const createOrUpdateProfile = createAsyncThunk(
+	"createOrUpdateProfile",
 	async (user: any, thunkApi: any) => {
 		try {
 			const edit_profile = thunkApi?.getState?.().edit_profile;
@@ -47,9 +47,9 @@ export const createEditProfile = createAsyncThunk(
 				};
 
 				const { response, error } = await httpClient({
-					method: "POST",
+					method: _profile.id ? "PUT" : "POST",
 					path: {
-						url: "CREATE_PROFILE",
+						url: "CREATE_UPDATE_PROFILE",
 					},
 					data: _profile,
 					token: user.accessToken,
@@ -65,6 +65,41 @@ export const createEditProfile = createAsyncThunk(
 			return thunkApi.rejectWithValue({
 				message: "Unable to process your request!",
 			});
+		} catch (error: any) {
+			return thunkApi.rejectWithValue(error);
+		}
+	}
+);
+
+type EducationType = {
+	updating: boolean;
+	user: any;
+};
+
+export const createOrUpdateEducation = createAsyncThunk(
+	"createOrUpdateEducation",
+	async (educationStatus: EducationType, thunkApi: any) => {
+		try {
+			const edit_profile = thunkApi?.getState?.().edit_profile;
+
+			const { educations } = edit_profile || {};
+
+			const { response, error } = await httpClient({
+				method: "POST",
+				path: {
+					url: "CREATE_UPDATE_EDUCATION",
+				},
+				data: {
+					educations,
+				},
+				token: educationStatus.user.user.accessToken,
+			});
+
+			if (error) {
+				return thunkApi.rejectWithValue(error);
+			}
+
+			return thunkApi.fulfillWithValue(response?.data);
 		} catch (error: any) {
 			return thunkApi.rejectWithValue(error);
 		}

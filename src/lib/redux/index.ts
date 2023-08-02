@@ -1,5 +1,6 @@
 import createJobPostReducer from "@/features/CreateJobPost/ducks/createJobPost.reducer";
 import edit_profileReducer from "@/features/Profile/edit/ducks/edit_profile.reducer";
+import educationsReducer from "@/features/Profile/edit/ducks/educations/educations.reducer";
 import { configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
 
@@ -9,6 +10,7 @@ const store = configureStore({
 	reducer: {
 		create_job: createJobPostReducer,
 		edit_profile: edit_profileReducer,
+		educations: educationsReducer,
 	},
 	middleware(getDefaultMiddleware) {
 		return getDefaultMiddleware({

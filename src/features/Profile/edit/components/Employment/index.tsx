@@ -2,8 +2,15 @@
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
 import React from "react";
 import EmploymentInputs from "./EmploymentInputs";
+import { User } from "@/types/User";
+import { Profile } from "../../ducks/edit_profile.state";
 
-const Employment: React.FC = () => {
+type Props = {
+	user: User;
+	profile: Profile;
+};
+
+const Employment: React.FC<Props> = ({ user, profile }) => {
 	return (
 		<Card
 			sx={{

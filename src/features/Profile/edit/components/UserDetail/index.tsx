@@ -32,7 +32,7 @@ import PreferredTimeZone from "./PreferredTimeZone";
 import PreferredPerYear from "./PreferredPerYear";
 import Button from "@/components/Button";
 import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
-import { createEditProfile } from "../../ducks/edit_profile.actions";
+import { createOrUpdateProfile } from "../../ducks/edit_profile.actions";
 import Error from "next/error";
 
 type Props = {
@@ -45,7 +45,7 @@ const UserDetail: React.FC<Props> = ({ user }) => {
 
 	const onSave = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		dispatch(createEditProfile(user));
+		dispatch(createOrUpdateProfile(user));
 	};
 
 	return (
