@@ -2,9 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import EmploymentRow from "./EducationRow";
 import Button from "@/components/Button";
 import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
-import { Profile } from "../../ducks/edit_profile.state";
-import { User } from "@/types/User";
-import { Education } from "../../ducks/educations/education.state";
+import { Education, Profile } from "../../ducks/edit_profile.state";
 import { setEducation } from "../../ducks/educations/educations.reducer";
 
 type Props = {
@@ -39,11 +37,10 @@ const Education: React.FC<Props> = ({ user, profile }) => {
 	);
 
 	useEffect(() => {
-		if (profile.education) {
-			console.log(profile.education);
+		if (profile && profile.education) {
 			dispatch(setEducation(profile.education));
 		}
-	}, [dispatch, profile.education]);
+	}, [dispatch, profile]);
 
 	return (
 		<>

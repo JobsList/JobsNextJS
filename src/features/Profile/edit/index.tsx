@@ -72,8 +72,8 @@ const EditProfilePage: React.FC<Props> = (props) => {
 				<EditProfilePageHeader />
 
 				<UserDetail user={user} />
-				<Employment user={user} profile={profile} />
-				<SideProjects user={user} profile={profile} />
+				<Employment profile={profile} />
+				<SideProjects profile={profile} />
 				<Educations profile={profile} />
 			</Stack>
 		</React.Fragment>

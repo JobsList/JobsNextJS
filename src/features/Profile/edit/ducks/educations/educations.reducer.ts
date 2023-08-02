@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { educationState } from "./education.state";
 import { createOrUpdateEducation } from "./educations.actions";
 
-const editProfileSlice = createSlice({
-	name: "editProfileSlice",
+const editProfileEducationSlice = createSlice({
+	name: "editProfileEducationSlice",
 	initialState: educationState,
 	reducers: {
 		setError: (state, { payload }) => {
@@ -29,6 +29,6 @@ const editProfileSlice = createSlice({
 	},
 });
 
-export const { setEducation, setError } = editProfileSlice.actions;
+export const { setEducation, setError } = editProfileEducationSlice.actions;
 
-export default editProfileSlice.reducer;
+export default editProfileEducationSlice.reducer;

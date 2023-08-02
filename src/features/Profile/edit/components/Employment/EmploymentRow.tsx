@@ -1,22 +1,63 @@
-import { IconButton, Stack, TextField } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { Stack, TextField } from "@mui/material";
 import React from "react";
+import { Employment } from "../../ducks/edit_profile.state";
+import DateInput from "@/components/DateInput";
 
-const EmploymentRow: React.FC = () => {
+type Props = {
+	onChange?: (emp: Employment) => void;
+	emp: Employment;
+};
+
+const EmploymentRow: React.FC<Props> = ({ emp, onChange = () => {} }) => {
 	return (
 		<Stack alignItems="center" flexWrap="wrap" direction="row" mt={20}>
-			<TextField placeholder="year start" size="small" sx={{ width: "10%" }} />
+			<DateInput
+				value={emp.start_date}
+				label="year start"
+				slotProps={{
+					textField: {
+						size: "small",
+					},
+				}}
+				sx={{ width: "16%" }}
+				onChange={(date) => onChange?.({ ...emp, start_date: date })}
+			/>
 			&nbsp; - &nbsp;
-			<TextField placeholder="year end" size="small" sx={{ width: "10%" }} />
+			<DateInput
+				value={emp.end_date}
+				label="year end"
+				slotProps={{
+					textField: {
+						size: "small",
+					},
+				}}
+				sx={{ width: "16%" }}
+				onChange={(date) => onChange?.({ ...emp, end_date: date })}
+			/>
 			&nbsp;
-			<TextField placeholder="title" size="small" sx={{ width: "20%" }} />
+			<TextField
+				value={emp.title}
+				placeholder="title"
+				size="small"
+				sx={{ width: "20%" }}
+				onChange={(e) => onChange?.({ ...emp, title: e.target.value })}
+			/>
 			&nbsp; @ &nbsp;
-			<TextField placeholder="company" size="small" sx={{ width: "20%" }} />
+			<TextField
+				value={emp.company}
+				placeholder="company"
+				size="small"
+				sx={{ width: "20%" }}
+				onChange={(e) => onChange?.({ ...emp, company: e.target.value })}
+			/>
 			&nbsp;
-			<TextField placeholder="https://" size="small" sx={{ width: "20%" }} />
-			<IconButton color="warning">
-				<CloseIcon />
-			</IconButton>
+			<TextField
+				value={emp.link}
+				placeholder="https://"
+				size="small"
+				sx={{ width: "20%" }}
+				onChange={(e) => onChange?.({ ...emp, link: e.target.value })}
+			/>
 		</Stack>
 	);
 };

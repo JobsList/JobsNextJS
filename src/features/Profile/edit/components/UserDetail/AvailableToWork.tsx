@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Checkbox, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -31,12 +31,12 @@ const AvailableToWork: React.FC = () => {
 					/>
 				}
 			>
-				<Checkbox
+				{/* <Checkbox
 					checked={profile.available}
 					onChange={(_, checked) =>
 						dispatch(setEditProfile({ ...profile, available: checked }))
 					}
-				/>{" "}
+				/>{" "} */}
 				<Typography>from</Typography>&nbsp;
 				<DatePicker
 					value={dayjs(profile.available_from)}

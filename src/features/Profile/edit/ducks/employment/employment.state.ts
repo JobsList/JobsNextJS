@@ -1,20 +1,20 @@
-import { Education } from "../edit_profile.state";
+import { Employment } from "../edit_profile.state";
 
-export type EducationState = {
+export type EmploymentState = {
 	loading: boolean;
 	error: string;
-	educations: Education[];
+	employment: Employment[];
 };
 
-export const educationState: EducationState = {
+export const employmentState: EmploymentState = {
 	loading: false,
 	error: "",
-	educations: [
+	employment: [
 		{
 			start_date: new Date(),
 			end_date: new Date(),
 			title: "",
-			school: "",
+			company: "",
 			link: "",
 			profile_id: 0,
 			user_id: 0,
