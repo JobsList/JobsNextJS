@@ -60,6 +60,7 @@ export type Profile = {
 	educations: Education[];
 	employment: Employment[];
 	side_projects: SideProjects[];
+	profile_id: number;
 	user_id: number;
 };
 
@@ -115,6 +116,7 @@ export const editProfileState: EditProfileState = {
 		],
 		employment: [],
 		side_projects: [],
+		profile_id: 0,
 		user_id: 0,
 	},
 	educations: [

@@ -29,15 +29,13 @@ const Education: React.FC<Props> = ({ user, profile }) => {
 	const onChange = useCallback(
 		(education: Education, index: number) => {
 			const _educationsList = [...educations];
-			education.profile_id = +`${profile?.id}`;
+			education.profile_id = +`${profile?.profile_id}`;
 			education.user_id = +`${user?.user?.id}`;
 			_educationsList[index] = education;
 
-			console.log("======> ", education);
-
 			dispatch(setEducation(_educationsList));
 		},
-		[dispatch, educations, profile?.id, user?.user?.id]
+		[dispatch, educations, profile?.profile_id, user?.user?.id]
 	);
 
 	useEffect(() => {
