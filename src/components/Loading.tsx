@@ -3,14 +3,22 @@ import React from "react";
 
 type LoadingProps = {
 	visible: boolean;
+	color?:
+		| "primary"
+		| "secondary"
+		| "error"
+		| "info"
+		| "success"
+		| "warning"
+		| "inherit";
 };
 
-const Loading: React.FC<LoadingProps> = ({ visible }) => {
+const Loading: React.FC<LoadingProps> = ({ visible, color = "primary" }) => {
 	if (!visible) {
 		return <></>;
 	}
 
-	return <CircularProgress color="primary" />;
+	return <CircularProgress color={color} />;
 };
 
 export default Loading;

@@ -33,16 +33,16 @@ function Bootstrap({
 		Component.layout || (({ children }) => <>{children}</>);
 
 	return (
-		<Provider store={store}>
-			<CacheProvider value={emotionCache}>
-				<Head>
-					<title>Job Search</title>
-					<meta
-						name="viewport"
-						content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-					/>
-					<meta charSet="utf-8" />
-				</Head>
+		<CacheProvider value={emotionCache}>
+			<Head>
+				<title>Job Search</title>
+				<meta
+					name="viewport"
+					content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+				/>
+				<meta charSet="utf-8" />
+			</Head>
+			<Provider store={store}>
 				<ThemeProvider theme={theme}>
 					<CssBaseline />
 					<Layout>
@@ -51,8 +51,8 @@ function Bootstrap({
 						</SessionProvider>
 					</Layout>
 				</ThemeProvider>
-			</CacheProvider>
-		</Provider>
+			</Provider>
+		</CacheProvider>
 	);
 }
 
