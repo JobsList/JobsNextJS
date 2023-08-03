@@ -27,12 +27,12 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 		backgroundColor: "extra.white",
 	};
 
-	if (post_design.highlight.active) {
-		headerDefaultStyle.backgroundColor = post_design.highlight.color;
+	if (post_design.highlight_in_yellow.active) {
+		headerDefaultStyle.backgroundColor = post_design.highlight_in_yellow.color;
 	}
 
-	if (job_details.highlight.active) {
-		headerDefaultStyle.backgroundColor = job_details.highlight.color;
+	if (job_details.post_hightlight.active) {
+		headerDefaultStyle.backgroundColor = job_details.post_hightlight.color;
 	}
 
 	return (

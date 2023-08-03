@@ -12,9 +12,9 @@ const HighlightInYellow: React.FC = () => {
 
 	return (
 		<CheckboxWithBoost
-			checked={post_design.highlight.active}
+			checked={post_design.highlight_in_yellow.active}
 			labelText={<Text>Highlight your post in ⚠️ yellow (+$49)</Text>}
-			boost={post_design.highlight.boost}
+			boost={post_design.highlight_in_yellow.boost}
 			onChange={(checked) => {
 				const result = calculateExpectedClickAndViews(
 					2,
@@ -27,7 +27,10 @@ const HighlightInYellow: React.FC = () => {
 						expected_result: result,
 						post_design: {
 							...post_design,
-							highlight: { ...post_design.highlight, active: checked },
+							highlight_in_yellow: {
+								...post_design.highlight_in_yellow,
+								active: checked,
+							},
 						},
 					})
 				);

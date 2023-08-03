@@ -22,7 +22,9 @@ const JobPostHeaderCompanyLogo: React.FC<JobPostHeaderCompanyLogoProps> = ({
 		>
 			<Avatar
 				src={
-					post.post_design.show_logo.active ? post.job_details.company_logo : ""
+					post.post_design.show_company_logo.active
+						? post.job_details.company_logo
+						: ""
 				}
 				sx={{ width: 56, height: 56 }}
 			>

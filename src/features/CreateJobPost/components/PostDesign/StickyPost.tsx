@@ -10,7 +10,7 @@ const StickyPost: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { payload } = useAppSelect((state) => state.create_job);
 	const { expected_result, post_design } = payload;
-	const { sticky } = post_design;
+	const { sticky_post } = post_design;
 
 	const onChange = (
 		checked: boolean,
@@ -27,15 +27,17 @@ const StickyPost: React.FC = () => {
 		const _expected_result = { ...expected_result };
 
 		// Before updating the redux state
-		if (sticky.type && checked && type) {
-			let boostType: keyof typeof sticky = `${sticky.type}Boost`;
+		if (sticky_post.type && checked && type) {
+			let boostType: keyof typeof sticky_post = `${sticky_post.type}Boost`;
 
 			// This will handle the previous checkbox of sticky section.
 			// i.e if the 2x more is checked and if the user clicks on 6x more view checkbox then
 			// it should remove the previous 2x more clicks and views number;
-			if (sticky[`${boostType}`]) {
-				_expected_result.clicks = _expected_result.clicks / sticky[boostType];
-				_expected_result.views = _expected_result.views / sticky[boostType];
+			if (sticky_post[`${boostType}`]) {
+				_expected_result.clicks =
+					_expected_result.clicks / sticky_post[boostType];
+				_expected_result.views =
+					_expected_result.views / sticky_post[boostType];
 			}
 		}
 
@@ -51,8 +53,8 @@ const StickyPost: React.FC = () => {
 				expected_result: result,
 				post_design: {
 					...post_design,
-					sticky: {
-						...sticky,
+					sticky_post: {
+						...sticky_post,
 						type: checked ? type : undefined,
 						active: checked,
 					},
@@ -64,44 +66,52 @@ const StickyPost: React.FC = () => {
 	return (
 		<React.Fragment>
 			<CheckboxWithBoost
-				checked={sticky.type === "hours"}
+				checked={sticky_post.type === "hours"}
 				labelText={
 					<Text>
 						Sticky your post so it says on 📌 top of frontpage for ⏰ 24 hours
 						(+$134)
 					</Text>
 				}
-				boost={sticky.hoursBoost}
+				boost={sticky_post.hoursBoost}
 				onChange={(checked) =>
-					onChange(checked, sticky.hoursBoost, checked ? "hours" : undefined)
+					onChange(
+						checked,
+						sticky_post.hoursBoost,
+						checked ? "hours" : undefined
+					)
 				}
 			/>
 
 			<CheckboxWithBoost
-				checked={sticky.type === "week"}
+				checked={sticky_post.type === "week"}
 				labelText={
 					<Text>
 						Sticky your post so it says on 📌 top of frontpage for 🗓️ 1 week
 						(+$334)
 					</Text>
 				}
-				boost={sticky.weekBoost}
+				boost={sticky_post.weekBoost}
 				onChange={(checked) =>
-					onChange(checked, sticky.weekBoost, checked ? "week" : undefined)
+					onChange(checked, sticky_post.weekBoost, checked ? "week" : undefined)
 				}
 			/>
 
 			<CheckboxWithBoost
-				checked={sticky.type === "month"}
+				checked={sticky_post.type === "month"}
 				labelText={
 					<Text>
 						Sticky your post so it says on 📌 top of frontpage for 🗓️ 1 month
 						(+$942)
 					</Text>
 				}
-				boost={sticky.monthBoost}
+				boost={sticky_post.monthBoost}
 				onChange={(checked) =>
-					onChange(checked, sticky.monthBoost, checked ? "month" : undefined)
+					onChange(
+						checked,
+						sticky_post.monthBoost,
+						checked ? "month" : undefined
+					)
 				}
 			/>
 		</React.Fragment>

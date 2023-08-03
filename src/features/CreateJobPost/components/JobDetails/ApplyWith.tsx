@@ -17,6 +17,7 @@ const ApplyWith: React.FC = () => {
 				mt={10}
 				mb={10}
 				value={job_details.apply_with_url}
+				require={job_details.apply_with_email === ""}
 				onChange={(e) =>
 					dispatch(
 						setJobPostPayload({
@@ -39,6 +40,7 @@ const ApplyWith: React.FC = () => {
 				mt={10}
 				mb={10}
 				value={job_details.apply_with_email}
+				require={job_details.apply_with_url === ""}
 				onChange={(e) =>
 					dispatch(
 						setJobPostPayload({

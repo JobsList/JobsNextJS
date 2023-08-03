@@ -13,6 +13,7 @@ type InputWithLabelProps = {
 	mt?: number;
 	mb?: number;
 	textProps?: TextFieldProps;
+	require?: boolean;
 };
 
 const InputWithLabel: React.FC<InputWithLabelProps> = ({
@@ -23,6 +24,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
 	mt,
 	mb,
 	textProps,
+	require = true,
 }) => {
 	return (
 		<Box component="div" mt={mt} mb={mb}>
@@ -34,7 +36,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({
 				placeholder={label}
 				helperText={helperText}
 				onChange={onChange}
-				required
+				required={require}
 				fullWidth
 			/>
 		</Box>

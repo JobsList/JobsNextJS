@@ -36,7 +36,7 @@ const Gelock: React.FC = () => {
 				...payload,
 				post_design: {
 					...post_design,
-					geolock: isConfirmed && checked,
+					geo_lock: isConfirmed && checked,
 				},
 				expected_result: _expected_result,
 			})
@@ -46,7 +46,7 @@ const Gelock: React.FC = () => {
 	return (
 		<CheckboxWithBoost
 			onChange={onChange}
-			checked={post_design.geolock}
+			checked={post_design.geo_lock}
 			labelText={
 				<Text>
 					Geolock your post for people only in the location it's restricted to
