@@ -7,15 +7,48 @@ import PageWithLayoutType from "@/layouts";
 import BaseLayout from "@/layouts/BaseLayout";
 import session from "@/lib/session";
 import { User } from "@/types/User";
+import httpClient from "@/lib/config/http";
 
 // NOTE: this is server side generated page along with meta tags,
 // getServerSideProps will run on the server, we can add api call here as well.
 export const getServerSideProps = async (ctx: any) => {
-	const user = await session(ctx);
+	const user: any = await session(ctx);
+
+	if (user) {
+		const { response, error } = await httpClient({
+			method: "GET",
+			path: {
+				url: "GET_PROFILE",
+				params: {
+					id: user?.user?.id,
+				},
+			},
+			token: user.accessToken,
+		});
+
+		if (response?.data) {
+			return {
+				props: {
+					tile: "Job List App",
+					user: {
+						...user,
+						user: {
+							...user?.user,
+							profile: {
+								...user?.user?.profile,
+								photo: response?.data?.photo,
+								username: response?.data?.username,
+							},
+						},
+					},
+				},
+			};
+		}
+	}
 
 	return {
 		props: {
-			title: "Job Search App",
+			title: "Job List App",
 			user,
 		},
 	};

@@ -15,6 +15,7 @@ import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import Link from "../Link";
 import httpClient from "@/lib/config/http";
+import useAuth from "@/hooks/useAuth";
 
 type UserAvatarProps = {
 	user: User;
