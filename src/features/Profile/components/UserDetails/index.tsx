@@ -6,8 +6,23 @@ import Experience from "./Experience";
 import AboutUser from "./AboutUser";
 import UserInfo from "./UserInfo";
 import Link from "@/components/Link";
+import { User } from "@/types/User";
+import { Profile } from "../../edit/ducks/edit_profile.state";
 
-const UserDetails: React.FC = () => {
+type Props = {
+	user: User;
+	profile: Profile;
+};
+
+const UserDetails: React.FC<Props> = ({ user, profile }) => {
+	let profileLink = "";
+
+	if (profile && profile?.username) {
+		profileLink = `/@${profile?.username}`;
+	} else {
+		profileLink = `/@${user?.user?.email}`;
+	}
+
 	return (
 		<Box
 			component="div"
@@ -17,7 +32,7 @@ const UserDetails: React.FC = () => {
 			}}
 		>
 			<Link
-				href="/@developer/edit"
+				href={`${profileLink}/edit`}
 				sx={{
 					position: "absolute",
 					top: -50,
@@ -59,6 +74,7 @@ const UserDetails: React.FC = () => {
 								top: -45,
 							},
 						}}
+						src={profile ? profile?.photo : ""}
 					>
 						Profile Image
 					</Avatar>
@@ -71,10 +87,10 @@ const UserDetails: React.FC = () => {
 						marginTop: (theme) => theme.spacing(45),
 					}}
 				>
-					<Username name="username" />
-					<Experience text="Remote worker with 7+ years of experience - Last seen one day ago " />
-					<AboutUser />
-					<UserInfo />
+					<Username name={profile ? `@${profile?.username}` : ""} />
+					{/* <Experience text="Remote worker with 7+ years of experience - Last seen one day ago " /> */}
+					<AboutUser profile={profile} />
+					<UserInfo profile={profile} />
 				</Box>
 			</Box>
 		</Box>

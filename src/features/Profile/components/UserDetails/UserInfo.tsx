@@ -4,18 +4,36 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import React from "react";
 import RenderSection from "./RenderSection";
+import { Profile } from "../../edit/ducks/edit_profile.state";
 
-const UserInfo: React.FC = () => {
+type Props = {
+	profile: Profile;
+};
+
+const UserInfo: React.FC<Props> = ({ profile }) => {
+	const {
+		nationality = "",
+		residency = "",
+		location = "",
+		telegram = "",
+		github = "",
+		insta = "",
+		linkedIn,
+		skills = [],
+		languages = [],
+		annual_pay = 0,
+		hourly_rate = 0,
+	} = profile || {};
 	return (
 		<Stack spacing={10} divider={<Divider flexItem />} mt={30}>
 			<RenderSection title="🛂 Nationality">
-				<Typography>🇵🇰 Pakistan</Typography>
+				<Typography>{nationality}</Typography>
 			</RenderSection>
 			<RenderSection title="🏡 Residency ">
-				<Typography>🇵🇰 Pakistan</Typography>
+				<Typography>{residency}</Typography>
 			</RenderSection>
 			<RenderSection title="📍 Location">
-				<Typography>🇵🇰 Pakistan</Typography>
+				<Typography>{location}</Typography>
 			</RenderSection>
 			<RenderSection
 				title={
@@ -31,7 +49,7 @@ const UserInfo: React.FC = () => {
 					</span>
 				}
 			>
-				<Typography>🇵🇰 Pakistan</Typography>
+				<Typography>@{telegram}</Typography>
 			</RenderSection>
 			<RenderSection
 				title={
@@ -46,7 +64,7 @@ const UserInfo: React.FC = () => {
 					</span>
 				}
 			>
-				<Typography>🇵🇰 Pakistan</Typography>
+				<Typography>@{github}</Typography>
 			</RenderSection>
 			<RenderSection
 				title={
@@ -62,23 +80,39 @@ const UserInfo: React.FC = () => {
 					</span>
 				}
 			>
-				<Typography>🇵🇰 Pakistan</Typography>
+				<Typography>{linkedIn}</Typography>
+			</RenderSection>
+			<RenderSection
+				title={
+					<span style={{ display: "flex", alignItems: "center" }}>
+						<LinkedInIcon
+							sx={{
+								marginRight: (theme) => theme.spacing(1),
+								fontSize: (theme) => theme.typography.fontSize * 1.2,
+								color: "#03A9F4",
+							}}
+						/>
+						Insta
+					</span>
+				}
+			>
+				<Typography>@{insta}</Typography>
 			</RenderSection>
 			<RenderSection title="Skilled in">
-				<Typography>🇵🇰 Pakistan</Typography>
+				<Typography>{skills.join(", ")}</Typography>
 			</RenderSection>
 			<RenderSection title="Fluent in">
-				<Typography>🇵🇰 Pakistan</Typography>
+				<Typography>{languages.join(", ")}</Typography>
 			</RenderSection>
 			<RenderSection title="Preferred annual pay (min)">
-				<Typography>🇵🇰 Pakistan</Typography>
+				<Typography>${annual_pay}</Typography>
 			</RenderSection>
 			<RenderSection title="Preferred hourly pay (min)">
-				<Typography>🇵🇰 Pakistan</Typography>
+				<Typography>${hourly_rate} per hour</Typography>
 			</RenderSection>
-			<RenderSection title="Badges">
+			{/* <RenderSection title="Badges">
 				<Typography>🇵🇰 Pakistan</Typography>
-			</RenderSection>
+			</RenderSection> */}
 		</Stack>
 	);
 };

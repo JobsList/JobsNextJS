@@ -47,7 +47,7 @@ const httpClient = async (payload: Payload) => {
 		}
 
 		if (method !== "GET" && data) {
-			options.data = JSON.stringify(data);
+			options.data = data;
 		}
 
 		if (token) {
@@ -67,7 +67,7 @@ const httpClient = async (payload: Payload) => {
 		// Add any logic for error, i.e to show any notification etc globally in application.
 
 		if (err instanceof AxiosError) {
-			// console.log(err.status, err.message);
+			console.log(err.status, err.message);
 			return {
 				status: err.status,
 				message: err.message,
