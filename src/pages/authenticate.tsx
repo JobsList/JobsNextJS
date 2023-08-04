@@ -16,7 +16,7 @@ const Authenticate: NextPage = () => {
 (Authenticate as PageWithLayoutType).layout = BaseLayout;
 
 export const getServerSideProps = async (ctx: NextPageContext) => {
-	const userSession = await session(ctx);
+	const userSession: any = await session(ctx);
 
 	if (!userSession) {
 		return {
@@ -28,7 +28,9 @@ export const getServerSideProps = async (ctx: NextPageContext) => {
 	}
 
 	// check if the user has profile or not
-	if (userSession?.user && !userSession?.user?.profile) {
+	const { profile = null } = userSession.user;
+
+	if (userSession.user && !profile) {
 		return {
 			redirect: {
 				destination: `/@${userSession.user.email}/edit`,
