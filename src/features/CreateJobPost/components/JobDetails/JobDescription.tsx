@@ -2,7 +2,7 @@ import React from "react";
 import Editor from "../Editor";
 import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
 import { setJobPostPayload } from "../../ducks/createJobPost.reducer";
-import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
+import { convertToRaw } from "draft-js";
 
 const JobDescription = () => {
 	const dispatch = useAppDispatch();

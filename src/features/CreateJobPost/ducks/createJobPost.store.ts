@@ -89,6 +89,7 @@ export type JOB_POST_PAYLOAD = {
 	company_details: COMPANY_DETAILS_TYPE;
 	feedback?: string;
 	expected_result: EXPECTED_RESULT;
+	createdAt?: string;
 };
 
 export type CREATE_JOB_POST_INITIAL_STATE = {
@@ -160,5 +161,6 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 			clicks: DEFAULT_CLICKS,
 		},
 		feedback: "",
+		createdAt: new Date().toISOString(),
 	},
 };

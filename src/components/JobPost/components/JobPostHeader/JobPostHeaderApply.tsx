@@ -2,6 +2,10 @@ import React from "react";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Typography, styled } from "@mui/material";
 import MUIButton from "@/components/Button";
+import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
+import dayjs from "dayjs";
+import { useRouter } from "next/router";
+import Link from "@/components/Link";
 
 const Button = styled(MUIButton)(({ theme }) => ({
 	marginLeft: theme.spacing(6),
@@ -12,9 +16,18 @@ const Button = styled(MUIButton)(({ theme }) => ({
 
 type JobPostHeaderApplyProps = {
 	preview?: boolean;
+	post: JOB_POST_PAYLOAD;
 };
 
-const JobPostHeaderApply: React.FC<JobPostHeaderApplyProps> = ({ preview }) => {
+const JobPostHeaderApply: React.FC<JobPostHeaderApplyProps> = ({
+	preview,
+	post,
+}) => {
+	const { createdAt = new Date() } = post;
+	const days = Math.abs(dayjs(createdAt).diff(new Date(), "days"));
+
+	const router = useRouter();
+
 	return (
 		<>
 			{!preview ? (
@@ -26,16 +39,35 @@ const JobPostHeaderApply: React.FC<JobPostHeaderApplyProps> = ({ preview }) => {
 					}}
 				>
 					<AccessTimeIcon sx={{ marginRight: (theme) => theme.spacing(2) }} />
-					2d
+					{days === 0 ? "Today" : `${days}d`}
 				</Typography>
 			) : null}
-			<Button
-				preview={preview}
-				variant={!preview ? "contained" : "outlined"}
-				fullWidth
-			>
-				Apply
-			</Button>
+
+			{preview ? (
+				<Button
+					preview={preview}
+					variant={!preview ? "contained" : "outlined"}
+					fullWidth
+				>
+					Apply
+				</Button>
+			) : (
+				<Link
+					target="_blank"
+					sx={{
+						backgroundColor: (theme) => theme.palette.primary.main,
+						color: (theme) => theme.palette.extra.white,
+						margin: (theme) => theme.spacing(0, 2),
+						padding: (theme) => theme.spacing(3, 20),
+						borderRadius: (theme) => theme.shape.borderRadius - 7,
+						borderBottomWidth: 0,
+						boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.3)",
+					}}
+					href={`${post?.job_details?.apply_with_url}`}
+				>
+					Apply
+				</Link>
+			)}
 		</>
 	);
 };

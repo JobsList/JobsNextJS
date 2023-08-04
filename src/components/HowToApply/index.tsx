@@ -6,6 +6,7 @@ import Subtitle2 from "../Subtitle2";
 import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 import ReferenceAndApplyBtn from "./components/ReferenceAndApplyBtn";
 import RenderRTEInHtml from "../RenderRTEInHtml";
+import { EditorState, convertFromRaw } from "draft-js";
 
 type HowToApplyProps = {
 	preview?: boolean;
@@ -13,6 +14,13 @@ type HowToApplyProps = {
 };
 
 const HowToApply: React.FC<HowToApplyProps> = ({ post, preview }) => {
+	let how_to_apply = null;
+	if (typeof post?.job_details?.how_to_apply === "string") {
+		how_to_apply = JSON.parse(post?.job_details?.how_to_apply);
+	} else {
+		how_to_apply = post?.job_details?.how_to_apply;
+	}
+
 	return (
 		<Box
 			sx={{
@@ -29,19 +37,16 @@ const HowToApply: React.FC<HowToApplyProps> = ({ post, preview }) => {
 				<Title>How do you Apply?</Title>
 				{!preview ? <Subtitle2>Process</Subtitle2> : <></>}
 			</Stack>
-
 			<ReferenceAndApplyBtn preview={preview} />
-
-			{!preview ? (
-				<>
-					<Typography>
-						Here the instructions go on how to apply for this job. Write them in
-						the "How to Apply?" box.
-					</Typography>
-				</>
-			) : (
+			<Typography>
+				Here the instructions go on how to apply for this job. Write them in the
+				"How to Apply?" box.
+			</Typography>
+			{how_to_apply && (
 				<RenderRTEInHtml
-					state={post.job_details.how_to_apply.getCurrentContent()}
+					state={EditorState.createWithContent(
+						convertFromRaw(how_to_apply)
+					)?.getCurrentContent?.()}
 				/>
 			)}
 		</Box>

@@ -89,7 +89,7 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 					alignItems: "center",
 				}}
 			>
-				<JobPostHeaderApply preview={preview} />
+				<JobPostHeaderApply post={post} preview={preview} />
 			</Grid>
 		</Grid>
 	);

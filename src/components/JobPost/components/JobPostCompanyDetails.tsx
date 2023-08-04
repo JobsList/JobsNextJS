@@ -2,14 +2,7 @@ import Link from "@/components/Link";
 import Subtitle1 from "@/components/Subtitle1";
 import Subtitle2 from "@/components/Subtitle2";
 import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
-import {
-	Avatar,
-	Box,
-	Button,
-	Stack,
-	TextField,
-	Typography,
-} from "@mui/material";
+import { Avatar, Box, Stack, TextField } from "@mui/material";
 import React from "react";
 
 type JobPostCompanyDetailsProps = {
@@ -48,14 +41,31 @@ const JobPostCompanyDetails: React.FC<JobPostCompanyDetailsProps> = ({
 				<Link target="_blank" href={job_details.apply_with_url || "/"}>
 					{job_details.apply_with_url}
 				</Link>
-				<Button
+				{/* <Button
 					variant="contained"
 					fullWidth
 					size="large"
 					sx={{ margin: (theme) => theme.spacing(10, 0) }}
 				>
 					Apply
-				</Button>
+				</Button> */}
+				<Link
+					target="_blank"
+					sx={{
+						backgroundColor: (theme) => theme.palette.primary.main,
+						color: (theme) => theme.palette.extra.white,
+						margin: (theme) => theme.spacing(5, 2),
+						padding: (theme) => theme.spacing(5, 20),
+						borderRadius: (theme) => theme.shape.borderRadius - 7,
+						borderBottomWidth: 0,
+						boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.3)",
+						width: "100%",
+						textAlign: "center",
+					}}
+					href={`${post?.job_details?.apply_with_url}`}
+				>
+					Apply
+				</Link>
 				<Stack spacing={5} justifyContent="center" alignItems="center">
 					{/* <Typography fontSize={(theme) => theme.typography.fontSize * 1.3}>
 						👀 4,531 views

@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Title from "@/components/Title";
-import JobPostMission from "./JobPostMission";
+// import JobPostMission from "./JobPostMission";
 import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 import RenderRTEInHtml from "@/components/RenderRTEInHtml";
 import { EditorState, convertFromRaw } from "draft-js";
@@ -46,14 +46,14 @@ const JobPostDescription: React.FC<JobPostDescriptionProps> = ({
 				)
 			)}
 
-			{!preview ? (
+			{/* {!preview ? (
 				<>
 					<Divider sx={{ mb: 10, mt: 10 }} />
 					<JobPostMission />
 				</>
 			) : (
 				<></>
-			)}
+			)} */}
 		</Box>
 	);
 };
