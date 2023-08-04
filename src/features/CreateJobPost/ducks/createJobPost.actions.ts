@@ -1,6 +1,7 @@
 import httpClient from "@/lib/config/http";
 import uploadFile from "@/utils/uploadFile";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { convertToRaw } from "draft-js";
 
 export const createJobPost = createAsyncThunk(
 	"createAJobPost",
@@ -26,9 +27,6 @@ export const createJobPost = createAsyncThunk(
 					},
 					token: user.accessToken,
 				});
-
-				console.log("RESPONSE ===> ", response?.data);
-				console.error("ERROR ===> ", error);
 
 				return thunkApi.fulfillWithValue(response?.data);
 			}

@@ -18,7 +18,7 @@ const JobPostDetails: React.FC<JobPostDetailsProps> = ({ preview, post }) => {
 				</Grid>
 				{!preview ? (
 					<Grid item md={3}>
-						<JobPostCompanyDetails />
+						<JobPostCompanyDetails post={post} preview={preview} />
 					</Grid>
 				) : (
 					<></>

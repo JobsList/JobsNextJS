@@ -1,19 +1,20 @@
 import Link from "@/components/Link";
 import Subtitle1 from "@/components/Subtitle1";
 import Subtitle2 from "@/components/Subtitle2";
-import {
-	Avatar,
-	Box,
-	Button,
-	Stack,
-	TextField,
-	Typography,
-} from "@mui/material";
+import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
+import { Avatar, Box, Stack, TextField } from "@mui/material";
 import React from "react";
 
-type JobPostCompanyDetailsProps = {};
+type JobPostCompanyDetailsProps = {
+	preview?: boolean;
+	post: JOB_POST_PAYLOAD;
+};
 
-const JobPostCompanyDetails: React.FC<JobPostCompanyDetailsProps> = ({}) => {
+const JobPostCompanyDetails: React.FC<JobPostCompanyDetailsProps> = ({
+	post,
+}) => {
+	const { company_name, job_details } = post;
+
 	return (
 		<Box
 			sx={{
@@ -30,28 +31,52 @@ const JobPostCompanyDetails: React.FC<JobPostCompanyDetailsProps> = ({}) => {
 			}}
 		>
 			<Stack justifyContent="center" alignItems="center">
-				<Avatar sx={{ width: 120, height: 120 }}>Logo</Avatar>
-				<Subtitle1 mt={10}>Company Name</Subtitle1>
-				<Link href="#">company-link</Link>
-				<Button
+				<Avatar
+					src={job_details?.company_logo}
+					sx={{ width: 120, height: 120 }}
+				>
+					Logo
+				</Avatar>
+				<Subtitle1 mt={10}>{company_name || ""}</Subtitle1>
+				<Link target="_blank" href={job_details.apply_with_url || "/"}>
+					{job_details.apply_with_url}
+				</Link>
+				{/* <Button
 					variant="contained"
 					fullWidth
 					size="large"
 					sx={{ margin: (theme) => theme.spacing(10, 0) }}
 				>
 					Apply
-				</Button>
+				</Button> */}
+				<Link
+					target="_blank"
+					sx={{
+						backgroundColor: (theme) => theme.palette.primary.main,
+						color: (theme) => theme.palette.extra.white,
+						margin: (theme) => theme.spacing(5, 2),
+						padding: (theme) => theme.spacing(5, 20),
+						borderRadius: (theme) => theme.shape.borderRadius - 7,
+						borderBottomWidth: 0,
+						boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.3)",
+						width: "100%",
+						textAlign: "center",
+					}}
+					href={`${post?.job_details?.apply_with_url}`}
+				>
+					Apply
+				</Link>
 				<Stack spacing={5} justifyContent="center" alignItems="center">
-					<Typography fontSize={(theme) => theme.typography.fontSize * 1.3}>
+					{/* <Typography fontSize={(theme) => theme.typography.fontSize * 1.3}>
 						👀 4,531 views
 					</Typography>
 					<Typography fontSize={(theme) => theme.typography.fontSize * 1.3}>
 						✅ 362 applied (8%){" "}
-					</Typography>
+					</Typography> */}
 
 					<Subtitle2>Share this job: </Subtitle2>
 					<TextField
-						value="https://remoteok.com/remote-jobs/remote-full-stack-engineer-with-salesforce-leadiq-247112?ref=sh"
+						value={job_details.apply_with_url}
 						sx={{ backgroundColor: "extra.white" }}
 						size="small"
 						InputProps={{

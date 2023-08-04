@@ -27,7 +27,7 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 		backgroundColor: "extra.white",
 	};
 
-	if (post_design.highlight_in_yellow.active) {
+	if (post_design?.highlight_in_yellow?.active) {
 		headerDefaultStyle.backgroundColor = post_design.highlight_in_yellow.color;
 	}
 
@@ -89,7 +89,7 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 					alignItems: "center",
 				}}
 			>
-				<JobPostHeaderApply preview={preview} />
+				<JobPostHeaderApply post={post} preview={preview} />
 			</Grid>
 		</Grid>
 	);

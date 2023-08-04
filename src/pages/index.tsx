@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { NextPage } from "next";
+import { NextPage, NextPageContext } from "next";
 
 import { Home } from "@/features";
 import PageWithLayoutType from "@/layouts";
@@ -8,11 +8,18 @@ import BaseLayout from "@/layouts/BaseLayout";
 import session from "@/lib/session";
 import { User } from "@/types/User";
 import httpClient from "@/lib/config/http";
+import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 
 // NOTE: this is server side generated page along with meta tags,
 // getServerSideProps will run on the server, we can add api call here as well.
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps = async (ctx: NextPageContext) => {
+	// ctx.res?.setHeader("Cache-Control", "s-maxage=20, stale-while-revalidate=60");
+
+	const { limit = 10, offset = 0 } = ctx.query;
+
 	const user: any = await session(ctx);
+
+	let userData = { ...user };
 
 	if (user) {
 		const { response, error } = await httpClient({
@@ -27,29 +34,49 @@ export const getServerSideProps = async (ctx: any) => {
 		});
 
 		if (response?.data) {
-			return {
-				props: {
-					tile: "Job List App",
-					user: {
-						...user,
-						user: {
-							...user?.user,
-							profile: {
-								...user?.user?.profile,
-								photo: response?.data?.photo,
-								username: response?.data?.username,
-							},
-						},
+			userData = {
+				...user,
+				user: {
+					...user?.user,
+					profile: {
+						...user?.user?.profile,
+						photo: response?.data?.photo,
 					},
 				},
 			};
+			// return {
+			// 	props: {
+			// 		tile: "Job List App",
+			// 		user: {
+			// 			...user,
+			// 			user: {
+			// 				...user?.user,
+			// 				profile: {
+			// 					...user?.user?.profile,
+			// 					photo: response?.data?.photo,
+			// 					username: response?.data?.username,
+			// 				},
+			// 			},
+			// 		},
+			// 	},
+			// };
 		}
 	}
+
+	// fetch job posts
+	const { response, error } = await httpClient({
+		method: "GET",
+		path: {
+			url: "GET_JOBST_LIST",
+		},
+		query: `limit=${+limit}&offset=${+offset}`,
+	});
 
 	return {
 		props: {
 			title: "Job List App",
-			user,
+			user: userData,
+			jobs: response?.data || [],
 		},
 	};
 };
@@ -57,6 +84,7 @@ export const getServerSideProps = async (ctx: any) => {
 type HomePageProps = {
 	title: string;
 	user: User;
+	jobs: Array<JOB_POST_PAYLOAD>;
 };
 
 const HomePage: NextPage<HomePageProps> = (props) => {
@@ -66,7 +94,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 				<title>{props.title}</title>
 				<meta name="description" content="this is home page of job search" />
 			</Head>
-			<Home user={props.user} />
+			<Home jobs={props.jobs} user={props.user} />
 		</React.Fragment>
 	);
 };

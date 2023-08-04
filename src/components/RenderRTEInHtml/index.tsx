@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import { ContentBlock, ContentState } from "draft-js";
+import { ContentState } from "draft-js";
 import { Options, stateToHTML } from "draft-js-export-html";
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
 
 type RenderRTEInHtmlProps = {
 	state: ContentState;
@@ -23,9 +23,18 @@ const options: Options = {
 };
 
 const RenderRTEInHtml: React.FC<RenderRTEInHtmlProps> = (props) => {
-	let html = stateToHTML(props.state, options);
+	const state = useMemo(() => props.state, [props]);
+	let html = state ? stateToHTML(state, options) : <></>;
 
-	return <Box component="div" dangerouslySetInnerHTML={{ __html: html }}></Box>;
+	console.log("state ===> ", props);
+	return (
+		<Box
+			component="div"
+			dangerouslySetInnerHTML={{
+				__html: html || <Typography>No Content.</Typography>,
+			}}
+		></Box>
+	);
 };
 
 export default RenderRTEInHtml;

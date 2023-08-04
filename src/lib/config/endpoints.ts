@@ -8,3 +8,4 @@ export const CREATE_UPDATE_EDUCATION = "/education";
 export const CREATE_UPDATE_EMPLOYMENT = "/employment";
 export const CREATE_UPDATE_SIDEPROJECTS = "/side-projects";
 export const CREATE_JOB_POST = "/job-post";
+export const GET_JOBST_LIST = "/job-post";
