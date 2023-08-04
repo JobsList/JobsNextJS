@@ -7,7 +7,7 @@ const InvoiceAddress: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { payload } = useAppSelect((state) => state.create_job);
 
-	const { company_detail } = payload;
+	const { company_details } = payload;
 
 	return (
 		<InputWithLabel
@@ -22,13 +22,13 @@ const InvoiceAddress: React.FC = () => {
 				size: "medium",
 				required: true,
 			}}
-			value={company_detail.invoice_address}
+			value={company_details.invoice_address}
 			onChange={(e) =>
 				dispatch(
 					setJobPostPayload({
 						...payload,
-						company_detail: {
-							...company_detail,
+						company_details: {
+							...company_details,
 							invoice_address: e.target.value,
 						},
 					})

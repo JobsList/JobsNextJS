@@ -41,7 +41,7 @@ const HowToApply: React.FC<HowToApplyProps> = ({ post, preview }) => {
 				</>
 			) : (
 				<RenderRTEInHtml
-					state={post.job_details.howToApply.getCurrentContent()}
+					state={post.job_details.how_to_apply.getCurrentContent()}
 				/>
 			)}
 		</Box>

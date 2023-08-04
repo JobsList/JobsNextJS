@@ -7,7 +7,7 @@ const InvoiceNoteAndPONumber: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { payload } = useAppSelect((state) => state.create_job);
 
-	const { company_detail } = payload;
+	const { company_details } = payload;
 
 	return (
 		<InputWithLabel
@@ -19,14 +19,14 @@ const InvoiceNoteAndPONumber: React.FC = () => {
 				dispatch(
 					setJobPostPayload({
 						...payload,
-						company_detail: {
-							...company_detail,
-							invoice_note_po_number: e.target.value,
+						company_details: {
+							...company_details,
+							invoice_note_po: e.target.value,
 						},
 					})
 				)
 			}
-			value={company_detail.invoice_note_po_number}
+			value={company_details.invoice_note_po}
 		/>
 	);
 };

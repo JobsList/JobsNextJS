@@ -26,17 +26,14 @@ const SalaryRange: React.FC = () => {
 			<Grid item xs>
 				<SalarySelection
 					options={[{ label: "Minimum Per Year", value: "min" }, ...salary]}
-					value={job_details.salary.min}
+					value={job_details.min_per_year}
 					onSelect={(value) =>
 						dispatch(
 							setJobPostPayload({
 								...payload,
 								job_details: {
 									...job_details,
-									salary: {
-										...job_details.salary,
-										min: value,
-									},
+									min_per_year: value,
 								},
 							})
 						)
@@ -60,17 +57,14 @@ const SalaryRange: React.FC = () => {
 			<Grid item xs>
 				<SalarySelection
 					options={[{ label: "Maximum Per Year", value: "max" }, ...salary]}
-					value={job_details.salary.max}
+					value={job_details.max_per_year}
 					onSelect={(value) =>
 						dispatch(
 							setJobPostPayload({
 								...payload,
 								job_details: {
 									...job_details,
-									salary: {
-										...job_details.salary,
-										max: value,
-									},
+									max_per_year: value,
 								},
 							})
 						)

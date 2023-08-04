@@ -11,13 +11,13 @@ const ShowCompanyLogo: React.FC = () => {
 	const { payload } = useAppSelect((state) => state.create_job);
 
 	const { expected_result, post_design } = payload;
-	const { show_logo } = post_design;
+	const { show_company_logo } = post_design;
 
 	return (
 		<CheckboxWithBoost
-			checked={show_logo?.active}
+			checked={show_company_logo?.active}
 			labelText={<Text>Show my ⭐️ company logo besides my post (+$44)</Text>}
-			boost={show_logo.boost}
+			boost={show_company_logo.boost}
 			onChange={(checked) => {
 				const result = calculateExpectedClickAndViews(
 					2,
@@ -31,8 +31,8 @@ const ShowCompanyLogo: React.FC = () => {
 						expected_result: result,
 						post_design: {
 							...post_design,
-							show_logo: {
-								...post_design.show_logo,
+							show_company_logo: {
+								...post_design.show_company_logo,
 								active: checked,
 							},
 						},

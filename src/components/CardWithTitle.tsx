@@ -21,6 +21,7 @@ const CardWithTitle: React.FC<CardWithTitleProps> = ({
 				boxShadow: (theme) => theme.shadows[1],
 				position: "relative",
 			}}
+			mb={20}
 		>
 			<Typography
 				sx={{

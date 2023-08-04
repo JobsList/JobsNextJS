@@ -3,7 +3,7 @@ export type POSITION_TYPE = {
 	title: string;
 };
 
-export const position_type: POSITION_TYPE[] = [
+export const positionType: POSITION_TYPE[] = [
 	{
 		value: "full-time",
 		title: "Full-time",

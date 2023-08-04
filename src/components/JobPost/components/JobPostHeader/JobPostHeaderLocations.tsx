@@ -11,7 +11,7 @@ const JobPostHeaderLocations: React.FC<JobPostHeaderLocationsProps> = ({
 }) => {
 	return (
 		<Stack direction="row" spacing={5}>
-			{post.location?.map?.((l) => (
+			{post.locations?.map?.((l) => (
 				<Chip
 					key={l.name}
 					size="small"
