@@ -29,40 +29,41 @@ export type BOOST_TYPE = {
 
 export type POST_DESIGN_TYPE = {
 	premium: boolean;
-	show_logo: BOOST_TYPE;
+	show_company_logo: BOOST_TYPE;
 	email_blast: BOOST_TYPE;
 	auto_matched?: boolean;
 	qr_code: boolean;
-	highlight: HIGHLIGHT & {
+	highlight_in_yellow: HIGHLIGHT & {
 		boost: number;
 	};
-	sticky: POST_STICKY & {
+	sticky_post: POST_STICKY & {
 		hoursBoost: number;
 		weekBoost: number;
 		monthBoost: number;
 	};
-	geolock: boolean;
+	geo_lock: boolean;
 };
 
 export type JOB_DETAIL_TYPE = {
 	company_logo?: string;
-	highlight: HIGHLIGHT & {
+	post_hightlight: HIGHLIGHT & {
 		boost: number;
 	};
-	salary: SALARY;
+	min_per_year: number;
+	max_per_year: number;
 	job_desc: EditorState;
 	benefits: Array<BenefitType>;
-	howToApply: EditorState;
+	how_to_apply: EditorState;
 	apply_with_url?: string;
 	apply_with_email?: string;
 };
 
 export type COMPANY_DETAILS_TYPE = {
-	twitter_name?: string;
-	company_email: string;
+	twitter?: string;
+	email: string;
 	invoice_email?: string;
 	invoice_address: string;
-	invoice_note_po_number?: string;
+	invoice_note_po?: string;
 	pay_later?: boolean;
 };
 
@@ -80,12 +81,12 @@ export type JOB_POST_PAYLOAD = {
 	id?: string;
 	company_name: string;
 	position: string;
-	positionType: string;
+	position_type: string;
 	tags: Array<string>;
-	location: Array<LOCATION>;
+	locations: Array<LOCATION>;
 	post_design: POST_DESIGN_TYPE;
 	job_details: JOB_DETAIL_TYPE;
-	company_detail: COMPANY_DETAILS_TYPE;
+	company_details: COMPANY_DETAILS_TYPE;
 	feedback?: string;
 	expected_result: EXPECTED_RESULT;
 };
@@ -102,12 +103,12 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 	payload: {
 		company_name: "",
 		position: "",
-		positionType: "full-time",
+		position_type: "full-time",
 		tags: [],
-		location: [{ name: "Worldwide", emoji: "🌏" }],
+		locations: [{ name: "Worldwide", emoji: "🌏" }],
 		post_design: {
 			premium: false,
-			show_logo: {
+			show_company_logo: {
 				active: false,
 				boost: 2,
 			},
@@ -117,43 +118,41 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 			},
 			auto_matched: false,
 			qr_code: false,
-			highlight: {
+			highlight_in_yellow: {
 				active: false,
 				color: "yellow",
 				boost: 2,
 			},
-			sticky: {
+			sticky_post: {
 				active: false,
 				type: undefined,
 				hoursBoost: 2,
 				weekBoost: 6,
 				monthBoost: 9,
 			},
-			geolock: false,
+			geo_lock: false,
 		},
 		job_details: {
 			company_logo: "",
-			highlight: {
+			post_hightlight: {
 				active: false,
 				color: "#ffffff",
 				boost: 3,
 			},
-			salary: {
-				min: 0,
-				max: 0,
-			},
+			min_per_year: 0,
+			max_per_year: 0,
 			job_desc: EditorState.createEmpty(),
 			benefits: [],
-			howToApply: EditorState.createEmpty(),
+			how_to_apply: EditorState.createEmpty(),
 			apply_with_url: "",
 			apply_with_email: "",
 		},
-		company_detail: {
-			twitter_name: "",
-			company_email: "",
+		company_details: {
+			twitter: "",
+			email: "",
 			invoice_email: "",
 			invoice_address: "",
-			invoice_note_po_number: "",
+			invoice_note_po: "",
 			pay_later: false,
 		},
 		expected_result: {

@@ -16,14 +16,14 @@ const HowToApply: React.FC = () => {
 						...payload,
 						job_details: {
 							...job_details,
-							howToApply: state,
+							how_to_apply: state,
 						},
 					})
 				)
 			}
 			label="How To Apply?"
 			height="34vh"
-			editorState={job_details.howToApply}
+			editorState={job_details.how_to_apply}
 		/>
 	);
 };

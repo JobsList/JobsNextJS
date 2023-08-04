@@ -15,7 +15,7 @@ const PostHightlight: React.FC = () => {
 	return (
 		<Stack direction="row" mt={10} columnGap={5} alignItems="center">
 			<CheckboxWithBoost
-				checked={job_details.highlight?.active}
+				checked={job_details.post_hightlight?.active}
 				labelText={
 					<Typography>
 						Highlight with your company's 🌈 brand color (+$499) 👉
@@ -27,8 +27,8 @@ const PostHightlight: React.FC = () => {
 							...payload,
 							job_details: {
 								...job_details,
-								highlight: {
-									...job_details.highlight,
+								post_hightlight: {
+									...job_details.post_hightlight,
 									active: checked,
 								},
 							},
@@ -37,15 +37,15 @@ const PostHightlight: React.FC = () => {
 				}
 			/>
 			<ColorPicker
-				color={job_details.highlight.color}
+				color={job_details.post_hightlight.color}
 				onChange={(color) =>
 					dispatch(
 						setJobPostPayload({
 							...payload,
 							job_details: {
 								...job_details,
-								highlight: {
-									...job_details.highlight,
+								post_hightlight: {
+									...job_details.post_hightlight,
 									color: color,
 								},
 							},

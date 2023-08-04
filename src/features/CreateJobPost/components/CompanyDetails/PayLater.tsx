@@ -10,20 +10,20 @@ const PayLater: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const { payload } = useAppSelect((state) => state.create_job);
 
-	const { company_detail } = payload;
+	const { company_details } = payload;
 
 	return (
 		<React.Fragment>
 			<Subtitle2>Pay Later</Subtitle2>
 			<CheckboxWithBoost
 				labelText={<Typography>I'd like to pay later</Typography>}
-				checked={company_detail.pay_later}
+				checked={company_details.pay_later}
 				onChange={(checked) =>
 					dispatch(
 						setJobPostPayload({
 							...payload,
-							company_detail: {
-								...company_detail,
+							company_details: {
+								...company_details,
 								pay_later: checked,
 							},
 						})

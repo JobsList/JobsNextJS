@@ -14,13 +14,13 @@ const Locations = () => {
 	const dispatch = useAppDispatch();
 	const { payload } = useAppSelect((state) => state.create_job);
 
-	const { location } = payload;
+	const { locations } = payload;
 
 	return (
 		<TagsInput
-			values={location}
+			values={locations}
 			onChange={(locations) => {
-				dispatch(setJobPostPayload({ ...payload, location: locations }));
+				dispatch(setJobPostPayload({ ...payload, locations }));
 			}}
 			options={countryList}
 			placeholder="Job is restricted to locations? "
