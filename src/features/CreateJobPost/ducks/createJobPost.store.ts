@@ -2,7 +2,7 @@ import {
 	DEFAULT_CLICKS,
 	DEFAULT_VIEWS,
 } from "@/utils/calculateExpectedClickAndViews";
-import { EditorState } from "draft-js";
+import { EditorState, RawDraftContentState } from "draft-js";
 import { BenefitType } from "../components/JobDetails/Benefits/Benefit";
 
 export type STICKY_POST_TYPE = "hours" | "week" | "month";
@@ -51,9 +51,9 @@ export type JOB_DETAIL_TYPE = {
 	};
 	min_per_year: number;
 	max_per_year: number;
-	job_desc: EditorState;
+	job_desc: any;
 	benefits: Array<BenefitType>;
-	how_to_apply: EditorState;
+	how_to_apply: any;
 	apply_with_url?: string;
 	apply_with_email?: string;
 };
@@ -89,6 +89,7 @@ export type JOB_POST_PAYLOAD = {
 	company_details: COMPANY_DETAILS_TYPE;
 	feedback?: string;
 	expected_result: EXPECTED_RESULT;
+	createdAt?: string;
 };
 
 export type CREATE_JOB_POST_INITIAL_STATE = {
@@ -141,11 +142,11 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 			},
 			min_per_year: 0,
 			max_per_year: 0,
-			job_desc: EditorState.createEmpty(),
 			benefits: [],
-			how_to_apply: EditorState.createEmpty(),
 			apply_with_url: "",
 			apply_with_email: "",
+			job_desc: EditorState.createEmpty(),
+			how_to_apply: EditorState.createEmpty(),
 		},
 		company_details: {
 			twitter: "",
@@ -160,5 +161,6 @@ export const create_post_initial_state: CREATE_JOB_POST_INITIAL_STATE = {
 			clicks: DEFAULT_CLICKS,
 		},
 		feedback: "",
+		createdAt: new Date().toISOString(),
 	},
 };

@@ -2,6 +2,7 @@ import React from "react";
 import Editor from "../Editor";
 import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
 import { setJobPostPayload } from "../../ducks/createJobPost.reducer";
+import { convertToRaw } from "draft-js";
 
 const JobDescription = () => {
 	const dispatch = useAppDispatch();
@@ -15,7 +16,10 @@ const JobDescription = () => {
 				return dispatch(
 					setJobPostPayload({
 						...payload,
-						job_details: { ...payload.job_details, job_desc: state },
+						job_details: {
+							...payload.job_details,
+							job_desc: convertToRaw(state?.getCurrentContent?.()),
+						},
 					})
 				);
 			}}

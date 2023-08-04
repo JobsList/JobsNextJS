@@ -22,7 +22,7 @@ const JobPostHeaderTitle: React.FC<JobPostHeaderTitleProps> = ({
 				>
 					{post.company_name || "Company"}
 				</Typography>
-				{!preview ? (
+				{/* {!preview ? (
 					<Chip
 						size="small"
 						variant="outlined"
@@ -39,7 +39,7 @@ const JobPostHeaderTitle: React.FC<JobPostHeaderTitleProps> = ({
 					/>
 				) : (
 					<></>
-				)}
+				)} */}
 			</Stack>
 			<Typography>{post.position || "Position"}</Typography>
 			<JobPostHeaderLocations post={post} />
