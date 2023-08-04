@@ -12,7 +12,7 @@ type Payload = {
 		params?: any;
 	};
 	data?: any;
-	query?: any;
+	query?: string;
 	extraBaseUrl?: string;
 	token?: string;
 };
@@ -43,7 +43,9 @@ const httpClient = async (payload: Payload) => {
 		};
 
 		if (method === "GET" && query) {
-			options.params.query = JSON.stringify(query);
+			options.params = {
+				query,
+			};
 		}
 
 		if (method !== "GET" && data) {
@@ -80,8 +82,7 @@ const httpClient = async (payload: Payload) => {
 		return {
 			response: null,
 			error: {
-				message: "",
-				status,
+				message: "Something went wrong!",
 			},
 		};
 	}

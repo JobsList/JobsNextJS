@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import { Box, Divider, Typography } from "@mui/material";
-import { stateToHTML } from "draft-js-export-html";
 import Title from "@/components/Title";
 import JobPostMission from "./JobPostMission";
 import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 import RenderRTEInHtml from "@/components/RenderRTEInHtml";
+import { EditorState, convertFromRaw } from "draft-js";
 
 type JobPostDescriptionProps = {
 	post: JOB_POST_PAYLOAD;
@@ -16,6 +16,13 @@ const JobPostDescription: React.FC<JobPostDescriptionProps> = ({
 	post,
 	preview,
 }) => {
+	let job_desc = null;
+	if (typeof post?.job_details?.job_desc === "string") {
+		job_desc = JSON.parse(post?.job_details?.job_desc);
+	} else {
+		job_desc = post?.job_details?.job_desc;
+	}
+
 	return (
 		<Box>
 			<Typography variant="h5">
@@ -30,9 +37,13 @@ const JobPostDescription: React.FC<JobPostDescriptionProps> = ({
 					the "Job Description" box above.
 				</Typography>
 			) : (
-				<RenderRTEInHtml
-					state={post.job_details.job_desc.getCurrentContent()}
-				/>
+				job_desc && (
+					<RenderRTEInHtml
+						state={EditorState.createWithContent(
+							convertFromRaw(job_desc)
+						)?.getCurrentContent?.()}
+					/>
+				)
 			)}
 
 			{!preview ? (

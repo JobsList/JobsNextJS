@@ -10,16 +10,19 @@ import Button from "@/components/Button";
 import { useAppDispatch, useAppSelect } from "@/hooks/useRedux";
 import { createJobPost } from "../ducks/createJobPost.actions";
 import useAuth from "@/hooks/useAuth";
+import { useRouter } from "next/router";
 
 const CreatePostForm = () => {
 	const { user } = useAuth();
 	const dispatch = useAppDispatch();
 	const { loading } = useAppSelect((state) => state.create_job);
+	const router = useRouter();
 
-	const onCreate = (e: React.FormEvent<HTMLFormElement>) => {
+	const onCreate = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		dispatch(createJobPost(user));
+		await dispatch(createJobPost(user));
+		router.push("/");
 	};
 
 	return (

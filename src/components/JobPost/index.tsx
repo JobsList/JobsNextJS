@@ -32,6 +32,8 @@ const JobPost: React.FC<JobPostProps> = ({
 			sx={{
 				...wrapperStyle,
 			}}
+			mt={10}
+			mb={10}
 		>
 			<JobPostHeader
 				onClick={() => {

@@ -1,6 +1,7 @@
 import Link from "@/components/Link";
 import Subtitle1 from "@/components/Subtitle1";
 import Subtitle2 from "@/components/Subtitle2";
+import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 import {
 	Avatar,
 	Box,
@@ -11,9 +12,16 @@ import {
 } from "@mui/material";
 import React from "react";
 
-type JobPostCompanyDetailsProps = {};
+type JobPostCompanyDetailsProps = {
+	preview?: boolean;
+	post: JOB_POST_PAYLOAD;
+};
 
-const JobPostCompanyDetails: React.FC<JobPostCompanyDetailsProps> = ({}) => {
+const JobPostCompanyDetails: React.FC<JobPostCompanyDetailsProps> = ({
+	post,
+}) => {
+	const { company_name, job_details } = post;
+
 	return (
 		<Box
 			sx={{
@@ -30,9 +38,16 @@ const JobPostCompanyDetails: React.FC<JobPostCompanyDetailsProps> = ({}) => {
 			}}
 		>
 			<Stack justifyContent="center" alignItems="center">
-				<Avatar sx={{ width: 120, height: 120 }}>Logo</Avatar>
-				<Subtitle1 mt={10}>Company Name</Subtitle1>
-				<Link href="#">company-link</Link>
+				<Avatar
+					src={job_details?.company_logo}
+					sx={{ width: 120, height: 120 }}
+				>
+					Logo
+				</Avatar>
+				<Subtitle1 mt={10}>{company_name || ""}</Subtitle1>
+				<Link target="_blank" href={job_details.apply_with_url || "/"}>
+					{job_details.apply_with_url}
+				</Link>
 				<Button
 					variant="contained"
 					fullWidth
@@ -42,16 +57,16 @@ const JobPostCompanyDetails: React.FC<JobPostCompanyDetailsProps> = ({}) => {
 					Apply
 				</Button>
 				<Stack spacing={5} justifyContent="center" alignItems="center">
-					<Typography fontSize={(theme) => theme.typography.fontSize * 1.3}>
+					{/* <Typography fontSize={(theme) => theme.typography.fontSize * 1.3}>
 						👀 4,531 views
 					</Typography>
 					<Typography fontSize={(theme) => theme.typography.fontSize * 1.3}>
 						✅ 362 applied (8%){" "}
-					</Typography>
+					</Typography> */}
 
 					<Subtitle2>Share this job: </Subtitle2>
 					<TextField
-						value="https://remoteok.com/remote-jobs/remote-full-stack-engineer-with-salesforce-leadiq-247112?ref=sh"
+						value={job_details.apply_with_url}
 						sx={{ backgroundColor: "extra.white" }}
 						size="small"
 						InputProps={{
