@@ -12,7 +12,7 @@ type Payload = {
 		params?: any;
 	};
 	data?: any;
-	query?: string;
+	query?: any;
 	extraBaseUrl?: string;
 	token?: string;
 };
@@ -44,7 +44,7 @@ const httpClient = async (payload: Payload) => {
 
 		if (method === "GET" && query) {
 			options.params = {
-				query,
+				...query,
 			};
 		}
 
