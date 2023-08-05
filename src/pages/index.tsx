@@ -15,7 +15,7 @@ import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.s
 export const getServerSideProps = async (ctx: NextPageContext) => {
 	// ctx.res?.setHeader("Cache-Control", "s-maxage=20, stale-while-revalidate=60");
 
-	const { limit = 10, offset = 0 } = ctx.query;
+	const { limit = 20, offset = 0, search_value, min_per_year = "" } = ctx.query;
 
 	const user: any = await session(ctx);
 
@@ -63,13 +63,22 @@ export const getServerSideProps = async (ctx: NextPageContext) => {
 		}
 	}
 
+	let minPerYear = parseInt(min_per_year?.toString?.())?.toLocaleString?.(
+		"en-US"
+	);
+
 	// fetch job posts
 	const { response, error } = await httpClient({
 		method: "GET",
 		path: {
 			url: "GET_JOBST_LIST",
 		},
-		query: `limit=${+limit}&offset=${+offset}`,
+		query: {
+			limit,
+			offset,
+			search_value,
+			min_per_year: minPerYear,
+		},
 	});
 
 	return {
