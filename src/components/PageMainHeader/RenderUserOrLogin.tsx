@@ -8,7 +8,7 @@ type RenderUserOrLoginProps = {
 };
 
 const RenderUserOrLogin: React.FC<RenderUserOrLoginProps> = ({ user }) => {
-	if (user) {
+	if (user && Object.keys(user).length > 0) {
 		return <UserAvatar user={user} />;
 	}
 
