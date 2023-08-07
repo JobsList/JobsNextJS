@@ -21,6 +21,8 @@ const HowToApply: React.FC<HowToApplyProps> = ({ post, preview }) => {
 		how_to_apply = post?.job_details?.how_to_apply;
 	}
 
+	console.log(typeof how_to_apply);
+
 	return (
 		<Box
 			sx={{
@@ -44,13 +46,9 @@ const HowToApply: React.FC<HowToApplyProps> = ({ post, preview }) => {
 			</Typography>
 			{how_to_apply && (
 				<RenderRTEInHtml
-					state={
-						typeof how_to_apply !== "object"
-							? EditorState.createWithContent(
-									convertFromRaw(how_to_apply)
-							  )?.getCurrentContent?.()
-							: EditorState.createEmpty().getCurrentContent()
-					}
+					state={EditorState.createWithContent(
+						convertFromRaw(how_to_apply)
+					)?.getCurrentContent?.()}
 				/>
 			)}
 		</Box>

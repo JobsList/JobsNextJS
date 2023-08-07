@@ -13,11 +13,11 @@ const JobPostHeaderLocations: React.FC<JobPostHeaderLocationsProps> = ({
 		<Stack direction="row" spacing={5}>
 			{post.locations?.map?.((l) => (
 				<Chip
-					key={l.name}
+					key={l.name || l.location}
 					size="small"
 					sx={{ backgroundColor: "extra.white" }}
 					variant="outlined"
-					label={`${l.emoji} ${l.name}`}
+					label={`${l.emoji} ${l.name || l.location}`}
 				/>
 			))}
 		</Stack>

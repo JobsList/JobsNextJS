@@ -11,9 +11,13 @@ const JobPostHeaderTags: React.FC<JobPostHeaderTagsProps> = ({
 	post,
 	preview,
 }) => {
+	const tags =
+		typeof post.tags === "object"
+			? post.tags?.map?.((t) => `${t?.tag}`)
+			: [...post.tags];
 	return (
-		<Stack direction="row" flexWrap="wrap" spacing={5}>
-			{post.tags?.slice?.(0, 4)?.map?.((t) => (
+		<Stack direction="row" flexWrap="wrap" columnGap={2} rowGap={2}>
+			{tags?.slice?.(0, 3)?.map?.((t) => (
 				<Chip
 					key={t}
 					variant="outlined"

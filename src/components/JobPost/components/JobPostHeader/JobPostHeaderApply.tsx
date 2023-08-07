@@ -4,7 +4,6 @@ import { Typography, styled } from "@mui/material";
 import MUIButton from "@/components/Button";
 import { JOB_POST_PAYLOAD } from "@/features/CreateJobPost/ducks/createJobPost.store";
 import dayjs from "dayjs";
-import { useRouter } from "next/router";
 import Link from "@/components/Link";
 
 const Button = styled(MUIButton)(({ theme }) => ({
@@ -26,8 +25,6 @@ const JobPostHeaderApply: React.FC<JobPostHeaderApplyProps> = ({
 	const { createdAt = new Date() } = post;
 	const days = Math.abs(dayjs(createdAt).diff(new Date(), "days"));
 
-	const router = useRouter();
-
 	return (
 		<>
 			{!preview ? (
@@ -38,7 +35,7 @@ const JobPostHeaderApply: React.FC<JobPostHeaderApplyProps> = ({
 						marginLeft: (theme) => theme.spacing(15),
 					}}
 				>
-					<AccessTimeIcon sx={{ marginRight: (theme) => theme.spacing(2) }} />
+					<AccessTimeIcon sx={{ marginRight: (theme) => theme.spacing(1) }} />
 					{days === 0 ? "Today" : `${days}d`}
 				</Typography>
 			) : null}
@@ -57,7 +54,7 @@ const JobPostHeaderApply: React.FC<JobPostHeaderApplyProps> = ({
 					sx={{
 						backgroundColor: (theme) => theme.palette.primary.main,
 						color: (theme) => theme.palette.extra.white,
-						margin: (theme) => theme.spacing(0, 2),
+						margin: (theme) => theme.spacing(0, 1),
 						padding: (theme) => theme.spacing(3, 20),
 						borderRadius: (theme) => theme.shape.borderRadius - 7,
 						borderBottomWidth: 0,

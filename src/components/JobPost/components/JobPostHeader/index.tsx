@@ -64,7 +64,7 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 			}
 		>
 			<JobPostHeaderCompanyLogo post={post} />
-			<Grid item md={6}>
+			<Grid item md={5.5}>
 				<JobPostHeaderTitle post={post} preview={preview} />
 			</Grid>
 			<Grid
@@ -82,7 +82,7 @@ const JobPostHeader: React.FC<JobPostHeaderProps> = ({
 
 			<Grid
 				item
-				md={2}
+				md={2.5}
 				sm={2}
 				sx={{
 					display: "flex",

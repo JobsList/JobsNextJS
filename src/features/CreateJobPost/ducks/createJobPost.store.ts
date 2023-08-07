@@ -73,7 +73,8 @@ export type EXPECTED_RESULT = {
 };
 
 export type LOCATION = {
-	name: string;
+	name?: string;
+	location?: string;
 	emoji: string;
 };
 
@@ -82,7 +83,7 @@ export type JOB_POST_PAYLOAD = {
 	company_name: string;
 	position: string;
 	position_type: string;
-	tags: Array<string>;
+	tags: Array<string> | Array<any>;
 	locations: Array<LOCATION>;
 	post_design: POST_DESIGN_TYPE;
 	job_details: JOB_DETAIL_TYPE;

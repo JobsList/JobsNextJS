@@ -22,7 +22,7 @@ const CreatePostForm = () => {
 		e.preventDefault();
 
 		await dispatch(createJobPost(user));
-		router.push("/");
+		// router.push("/");
 	};
 
 	return (
