@@ -44,9 +44,13 @@ const HowToApply: React.FC<HowToApplyProps> = ({ post, preview }) => {
 			</Typography>
 			{how_to_apply && (
 				<RenderRTEInHtml
-					state={EditorState.createWithContent(
-						convertFromRaw(how_to_apply)
-					)?.getCurrentContent?.()}
+					state={
+						typeof how_to_apply !== "object"
+							? EditorState.createWithContent(
+									convertFromRaw(how_to_apply)
+							  )?.getCurrentContent?.()
+							: EditorState.createEmpty().getCurrentContent()
+					}
 				/>
 			)}
 		</Box>

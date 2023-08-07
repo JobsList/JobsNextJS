@@ -26,7 +26,6 @@ const RenderRTEInHtml: React.FC<RenderRTEInHtmlProps> = (props) => {
 	const state = useMemo(() => props.state, [props]);
 	let html = state ? stateToHTML(state, options) : <></>;
 
-	console.log("state ===> ", props);
 	return (
 		<Box
 			component="div"

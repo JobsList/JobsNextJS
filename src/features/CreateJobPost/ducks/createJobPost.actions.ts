@@ -22,6 +22,12 @@ export const createJobPost = createAsyncThunk(
 						job_details: {
 							...job_details,
 							company_logo: uploadImage.url,
+							job_desc: convertToRaw(
+								job_details?.job_desc?.getCurrentContent?.()
+							),
+							how_to_apply: convertToRaw(
+								job_details?.how_to_apply?.getCurrentContent?.()
+							),
 						},
 						user_id: user?.user?.id,
 					},
