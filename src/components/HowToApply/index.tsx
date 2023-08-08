@@ -21,8 +21,6 @@ const HowToApply: React.FC<HowToApplyProps> = ({ post, preview }) => {
 		how_to_apply = post?.job_details?.how_to_apply;
 	}
 
-	console.log(typeof how_to_apply);
-
 	return (
 		<Box
 			sx={{
